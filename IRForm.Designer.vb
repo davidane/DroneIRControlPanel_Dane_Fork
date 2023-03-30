@@ -34,11 +34,18 @@ Partial Class IRForm
         Me.VideoOffButton = New System.Windows.Forms.Button()
         Me.FFCButton = New System.Windows.Forms.Button()
         Me.ResetButton = New System.Windows.Forms.Button()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
+        Me.upButton = New System.Windows.Forms.Button()
+        Me.leftButton = New System.Windows.Forms.Button()
+        Me.rightButton = New System.Windows.Forms.Button()
+        Me.downButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'GimbalButton1
         '
-        Me.GimbalButton1.Location = New System.Drawing.Point(181, 47)
+        Me.GimbalButton1.Location = New System.Drawing.Point(352, 142)
         Me.GimbalButton1.Name = "GimbalButton1"
         Me.GimbalButton1.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton1.TabIndex = 3
@@ -47,7 +54,7 @@ Partial Class IRForm
         '
         'GimablButton2
         '
-        Me.GimablButton2.Location = New System.Drawing.Point(181, 76)
+        Me.GimablButton2.Location = New System.Drawing.Point(352, 171)
         Me.GimablButton2.Name = "GimablButton2"
         Me.GimablButton2.Size = New System.Drawing.Size(75, 23)
         Me.GimablButton2.TabIndex = 4
@@ -56,7 +63,7 @@ Partial Class IRForm
         '
         'GimbalButton3
         '
-        Me.GimbalButton3.Location = New System.Drawing.Point(181, 105)
+        Me.GimbalButton3.Location = New System.Drawing.Point(352, 200)
         Me.GimbalButton3.Name = "GimbalButton3"
         Me.GimbalButton3.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton3.TabIndex = 5
@@ -65,7 +72,7 @@ Partial Class IRForm
         '
         'GimbalButton4
         '
-        Me.GimbalButton4.Location = New System.Drawing.Point(181, 134)
+        Me.GimbalButton4.Location = New System.Drawing.Point(352, 229)
         Me.GimbalButton4.Name = "GimbalButton4"
         Me.GimbalButton4.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton4.TabIndex = 6
@@ -74,7 +81,7 @@ Partial Class IRForm
         '
         'HomeButton
         '
-        Me.HomeButton.Location = New System.Drawing.Point(181, 187)
+        Me.HomeButton.Location = New System.Drawing.Point(352, 282)
         Me.HomeButton.Name = "HomeButton"
         Me.HomeButton.Size = New System.Drawing.Size(75, 23)
         Me.HomeButton.TabIndex = 7
@@ -83,7 +90,7 @@ Partial Class IRForm
         '
         'VideoOnButton
         '
-        Me.VideoOnButton.Location = New System.Drawing.Point(100, 187)
+        Me.VideoOnButton.Location = New System.Drawing.Point(271, 282)
         Me.VideoOnButton.Name = "VideoOnButton"
         Me.VideoOnButton.Size = New System.Drawing.Size(75, 23)
         Me.VideoOnButton.TabIndex = 8
@@ -92,7 +99,7 @@ Partial Class IRForm
         '
         'VideoOffButton
         '
-        Me.VideoOffButton.Location = New System.Drawing.Point(100, 216)
+        Me.VideoOffButton.Location = New System.Drawing.Point(271, 311)
         Me.VideoOffButton.Name = "VideoOffButton"
         Me.VideoOffButton.Size = New System.Drawing.Size(75, 23)
         Me.VideoOffButton.TabIndex = 9
@@ -101,7 +108,7 @@ Partial Class IRForm
         '
         'FFCButton
         '
-        Me.FFCButton.Location = New System.Drawing.Point(19, 216)
+        Me.FFCButton.Location = New System.Drawing.Point(190, 311)
         Me.FFCButton.Name = "FFCButton"
         Me.FFCButton.Size = New System.Drawing.Size(75, 23)
         Me.FFCButton.TabIndex = 10
@@ -110,18 +117,94 @@ Partial Class IRForm
         '
         'ResetButton
         '
-        Me.ResetButton.Location = New System.Drawing.Point(19, 187)
+        Me.ResetButton.Location = New System.Drawing.Point(190, 282)
         Me.ResetButton.Name = "ResetButton"
         Me.ResetButton.Size = New System.Drawing.Size(75, 23)
         Me.ResetButton.TabIndex = 11
         Me.ResetButton.Text = "Reset Turret"
         Me.ResetButton.UseVisualStyleBackColor = True
         '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Location = New System.Drawing.Point(71, 69)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(39, 17)
+        Me.RadioButton1.TabIndex = 12
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "Off"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(71, 92)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(53, 17)
+        Me.RadioButton2.TabIndex = 13
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "Direct"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'RadioButton3
+        '
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.Location = New System.Drawing.Point(71, 115)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(64, 17)
+        Me.RadioButton3.TabIndex = 14
+        Me.RadioButton3.TabStop = True
+        Me.RadioButton3.Text = "Stabilize"
+        Me.RadioButton3.UseVisualStyleBackColor = True
+        '
+        'upButton
+        '
+        Me.upButton.Location = New System.Drawing.Point(251, 52)
+        Me.upButton.Name = "upButton"
+        Me.upButton.Size = New System.Drawing.Size(75, 23)
+        Me.upButton.TabIndex = 15
+        Me.upButton.Text = "Up"
+        Me.upButton.UseVisualStyleBackColor = True
+        '
+        'leftButton
+        '
+        Me.leftButton.Location = New System.Drawing.Point(190, 81)
+        Me.leftButton.Name = "leftButton"
+        Me.leftButton.Size = New System.Drawing.Size(75, 23)
+        Me.leftButton.TabIndex = 16
+        Me.leftButton.Text = "Left"
+        Me.leftButton.UseVisualStyleBackColor = True
+        '
+        'rightButton
+        '
+        Me.rightButton.Location = New System.Drawing.Point(316, 81)
+        Me.rightButton.Name = "rightButton"
+        Me.rightButton.Size = New System.Drawing.Size(75, 23)
+        Me.rightButton.TabIndex = 17
+        Me.rightButton.Text = "Right"
+        Me.rightButton.UseVisualStyleBackColor = True
+        '
+        'downButton
+        '
+        Me.downButton.Location = New System.Drawing.Point(251, 109)
+        Me.downButton.Name = "downButton"
+        Me.downButton.Size = New System.Drawing.Size(75, 23)
+        Me.downButton.TabIndex = 18
+        Me.downButton.Text = "Down"
+        Me.downButton.UseVisualStyleBackColor = True
+        '
         'IRForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(322, 255)
+        Me.ClientSize = New System.Drawing.Size(458, 361)
+        Me.Controls.Add(Me.downButton)
+        Me.Controls.Add(Me.rightButton)
+        Me.Controls.Add(Me.leftButton)
+        Me.Controls.Add(Me.upButton)
+        Me.Controls.Add(Me.RadioButton3)
+        Me.Controls.Add(Me.RadioButton2)
+        Me.Controls.Add(Me.RadioButton1)
         Me.Controls.Add(Me.ResetButton)
         Me.Controls.Add(Me.FFCButton)
         Me.Controls.Add(Me.VideoOffButton)
@@ -134,6 +217,7 @@ Partial Class IRForm
         Me.Name = "IRForm"
         Me.Text = "IR Control Form"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Timer1 As Timer
@@ -147,4 +231,11 @@ Partial Class IRForm
     Friend WithEvents VideoOffButton As Button
     Friend WithEvents FFCButton As Button
     Friend WithEvents ResetButton As Button
+    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents RadioButton3 As RadioButton
+    Friend WithEvents upButton As Button
+    Friend WithEvents leftButton As Button
+    Friend WithEvents rightButton As Button
+    Friend WithEvents downButton As Button
 End Class

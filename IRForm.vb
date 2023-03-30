@@ -1,4 +1,6 @@
 ﻿'i changed this code
+Option Explicit On
+Option Strict On
 Public Class IRForm
     Dim headerByte(17) As Byte
     Dim directModeBool, stabalizeModeBool, offModeBool As Boolean

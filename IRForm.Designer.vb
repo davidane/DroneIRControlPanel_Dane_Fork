@@ -26,7 +26,7 @@ Partial Class IRForm
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.GimbalButton1 = New System.Windows.Forms.Button()
-        Me.GimablButton2 = New System.Windows.Forms.Button()
+        Me.GimbalButton2 = New System.Windows.Forms.Button()
         Me.GimbalButton3 = New System.Windows.Forms.Button()
         Me.GimbalButton4 = New System.Windows.Forms.Button()
         Me.HomeButton = New System.Windows.Forms.Button()
@@ -41,29 +41,30 @@ Partial Class IRForm
         Me.leftButton = New System.Windows.Forms.Button()
         Me.rightButton = New System.Windows.Forms.Button()
         Me.downButton = New System.Windows.Forms.Button()
+        Me.ExitButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'GimbalButton1
         '
-        Me.GimbalButton1.Location = New System.Drawing.Point(352, 142)
+        Me.GimbalButton1.Location = New System.Drawing.Point(316, 49)
         Me.GimbalButton1.Name = "GimbalButton1"
         Me.GimbalButton1.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton1.TabIndex = 3
         Me.GimbalButton1.Text = "0, -70"
         Me.GimbalButton1.UseVisualStyleBackColor = True
         '
-        'GimablButton2
+        'GimbalButton2
         '
-        Me.GimablButton2.Location = New System.Drawing.Point(352, 171)
-        Me.GimablButton2.Name = "GimablButton2"
-        Me.GimablButton2.Size = New System.Drawing.Size(75, 23)
-        Me.GimablButton2.TabIndex = 4
-        Me.GimablButton2.Text = "180, -70"
-        Me.GimablButton2.UseVisualStyleBackColor = True
+        Me.GimbalButton2.Location = New System.Drawing.Point(317, 78)
+        Me.GimbalButton2.Name = "GimbalButton2"
+        Me.GimbalButton2.Size = New System.Drawing.Size(75, 23)
+        Me.GimbalButton2.TabIndex = 4
+        Me.GimbalButton2.Text = "180, -70"
+        Me.GimbalButton2.UseVisualStyleBackColor = True
         '
         'GimbalButton3
         '
-        Me.GimbalButton3.Location = New System.Drawing.Point(352, 200)
+        Me.GimbalButton3.Location = New System.Drawing.Point(317, 107)
         Me.GimbalButton3.Name = "GimbalButton3"
         Me.GimbalButton3.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton3.TabIndex = 5
@@ -72,7 +73,7 @@ Partial Class IRForm
         '
         'GimbalButton4
         '
-        Me.GimbalButton4.Location = New System.Drawing.Point(352, 229)
+        Me.GimbalButton4.Location = New System.Drawing.Point(317, 136)
         Me.GimbalButton4.Name = "GimbalButton4"
         Me.GimbalButton4.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton4.TabIndex = 6
@@ -81,7 +82,7 @@ Partial Class IRForm
         '
         'HomeButton
         '
-        Me.HomeButton.Location = New System.Drawing.Point(352, 282)
+        Me.HomeButton.Location = New System.Drawing.Point(317, 180)
         Me.HomeButton.Name = "HomeButton"
         Me.HomeButton.Size = New System.Drawing.Size(75, 23)
         Me.HomeButton.TabIndex = 7
@@ -90,7 +91,7 @@ Partial Class IRForm
         '
         'VideoOnButton
         '
-        Me.VideoOnButton.Location = New System.Drawing.Point(271, 282)
+        Me.VideoOnButton.Location = New System.Drawing.Point(235, 20)
         Me.VideoOnButton.Name = "VideoOnButton"
         Me.VideoOnButton.Size = New System.Drawing.Size(75, 23)
         Me.VideoOnButton.TabIndex = 8
@@ -99,7 +100,7 @@ Partial Class IRForm
         '
         'VideoOffButton
         '
-        Me.VideoOffButton.Location = New System.Drawing.Point(271, 311)
+        Me.VideoOffButton.Location = New System.Drawing.Point(235, 49)
         Me.VideoOffButton.Name = "VideoOffButton"
         Me.VideoOffButton.Size = New System.Drawing.Size(75, 23)
         Me.VideoOffButton.TabIndex = 9
@@ -108,7 +109,7 @@ Partial Class IRForm
         '
         'FFCButton
         '
-        Me.FFCButton.Location = New System.Drawing.Point(190, 311)
+        Me.FFCButton.Location = New System.Drawing.Point(141, 180)
         Me.FFCButton.Name = "FFCButton"
         Me.FFCButton.Size = New System.Drawing.Size(75, 23)
         Me.FFCButton.TabIndex = 10
@@ -117,7 +118,7 @@ Partial Class IRForm
         '
         'ResetButton
         '
-        Me.ResetButton.Location = New System.Drawing.Point(190, 282)
+        Me.ResetButton.Location = New System.Drawing.Point(222, 180)
         Me.ResetButton.Name = "ResetButton"
         Me.ResetButton.Size = New System.Drawing.Size(75, 23)
         Me.ResetButton.TabIndex = 11
@@ -127,7 +128,7 @@ Partial Class IRForm
         'RadioButton1
         '
         Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(71, 69)
+        Me.RadioButton1.Location = New System.Drawing.Point(233, 94)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(39, 17)
         Me.RadioButton1.TabIndex = 12
@@ -138,7 +139,7 @@ Partial Class IRForm
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(71, 92)
+        Me.RadioButton2.Location = New System.Drawing.Point(233, 117)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(53, 17)
         Me.RadioButton2.TabIndex = 13
@@ -149,7 +150,7 @@ Partial Class IRForm
         'RadioButton3
         '
         Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(71, 115)
+        Me.RadioButton3.Location = New System.Drawing.Point(233, 140)
         Me.RadioButton3.Name = "RadioButton3"
         Me.RadioButton3.Size = New System.Drawing.Size(64, 17)
         Me.RadioButton3.TabIndex = 14
@@ -159,7 +160,7 @@ Partial Class IRForm
         '
         'upButton
         '
-        Me.upButton.Location = New System.Drawing.Point(251, 52)
+        Me.upButton.Location = New System.Drawing.Point(87, 30)
         Me.upButton.Name = "upButton"
         Me.upButton.Size = New System.Drawing.Size(75, 23)
         Me.upButton.TabIndex = 15
@@ -168,7 +169,7 @@ Partial Class IRForm
         '
         'leftButton
         '
-        Me.leftButton.Location = New System.Drawing.Point(190, 81)
+        Me.leftButton.Location = New System.Drawing.Point(26, 59)
         Me.leftButton.Name = "leftButton"
         Me.leftButton.Size = New System.Drawing.Size(75, 23)
         Me.leftButton.TabIndex = 16
@@ -177,7 +178,7 @@ Partial Class IRForm
         '
         'rightButton
         '
-        Me.rightButton.Location = New System.Drawing.Point(316, 81)
+        Me.rightButton.Location = New System.Drawing.Point(152, 59)
         Me.rightButton.Name = "rightButton"
         Me.rightButton.Size = New System.Drawing.Size(75, 23)
         Me.rightButton.TabIndex = 17
@@ -186,18 +187,28 @@ Partial Class IRForm
         '
         'downButton
         '
-        Me.downButton.Location = New System.Drawing.Point(251, 109)
+        Me.downButton.Location = New System.Drawing.Point(87, 87)
         Me.downButton.Name = "downButton"
         Me.downButton.Size = New System.Drawing.Size(75, 23)
         Me.downButton.TabIndex = 18
         Me.downButton.Text = "Down"
         Me.downButton.UseVisualStyleBackColor = True
         '
+        'ExitButton
+        '
+        Me.ExitButton.Location = New System.Drawing.Point(317, 218)
+        Me.ExitButton.Name = "ExitButton"
+        Me.ExitButton.Size = New System.Drawing.Size(75, 23)
+        Me.ExitButton.TabIndex = 19
+        Me.ExitButton.Text = "Exit"
+        Me.ExitButton.UseVisualStyleBackColor = True
+        '
         'IRForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(458, 361)
+        Me.ClientSize = New System.Drawing.Size(400, 242)
+        Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.downButton)
         Me.Controls.Add(Me.rightButton)
         Me.Controls.Add(Me.leftButton)
@@ -212,7 +223,7 @@ Partial Class IRForm
         Me.Controls.Add(Me.HomeButton)
         Me.Controls.Add(Me.GimbalButton4)
         Me.Controls.Add(Me.GimbalButton3)
-        Me.Controls.Add(Me.GimablButton2)
+        Me.Controls.Add(Me.GimbalButton2)
         Me.Controls.Add(Me.GimbalButton1)
         Me.Name = "IRForm"
         Me.Text = "IR Control Form"
@@ -223,7 +234,7 @@ Partial Class IRForm
     Friend WithEvents Timer1 As Timer
     Friend WithEvents SerialPort1 As IO.Ports.SerialPort
     Friend WithEvents GimbalButton1 As Button
-    Friend WithEvents GimablButton2 As Button
+    Friend WithEvents GimbalButton2 As Button
     Friend WithEvents GimbalButton3 As Button
     Friend WithEvents GimbalButton4 As Button
     Friend WithEvents HomeButton As Button
@@ -238,4 +249,5 @@ Partial Class IRForm
     Friend WithEvents leftButton As Button
     Friend WithEvents rightButton As Button
     Friend WithEvents downButton As Button
+    Friend WithEvents ExitButton As Button
 End Class

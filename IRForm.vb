@@ -364,7 +364,7 @@ Public Class IRForm
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         'this is my button, click it and your computer dies
-
+        End
     Private Sub daneButton_Click(sender As Object, e As EventArgs) Handles daneButton.Click
         'this is my button
 

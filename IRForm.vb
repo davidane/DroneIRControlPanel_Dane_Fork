@@ -356,11 +356,19 @@ Public Class IRForm
     Private Sub directUpDownBytes17()
         headerByte(17) = &H79
     End Sub
+
     Private Sub stabalizeUpDownBytes17()
         headerByte(17) = &H7C
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
+    Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Label1.Text = "pressed"
+    End Sub
+
+    Private Sub Button1_MouseDown(sender As Object, e As MouseEventArgs) Handles Button1.MouseDown
+        Label1.Text = "released"
+    End Sub
 End Class

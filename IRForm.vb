@@ -1,7 +1,4 @@
-﻿'i changed this code
-'i changed this code to test fork
 
-'dane changed this too
 Option Explicit On
 Option Strict On
 Public Class IRForm
@@ -373,4 +370,5 @@ Public Class IRForm
     End Sub
 End Class
 
+''danes comment''
 'comment 

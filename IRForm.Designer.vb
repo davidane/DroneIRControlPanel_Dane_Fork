@@ -44,7 +44,6 @@ Partial Class IRForm
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'GimbalButton1
@@ -224,21 +223,11 @@ Partial Class IRForm
         Me.Label1.TabIndex = 21
         Me.Label1.Text = "Label1"
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(222, 207)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 22
-        Me.Button2.Text = "Button7"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'IRForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(400, 242)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ExitButton)
@@ -285,5 +274,4 @@ Partial Class IRForm
     Friend WithEvents ExitButton As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Label1 As Label
-    Friend WithEvents Button2 As Button
 End Class

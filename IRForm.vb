@@ -13,6 +13,7 @@ Public Class IRForm
         SerialPort1.Open() 'intialize and open port
         'Timer1.Enabled = True 'enable timer 1 on form
 
+
         offModeRadioButton.Checked = True
         directModeRadioButton.Checked = False
         stabilizeModeRadioButton.Checked = False
@@ -39,10 +40,6 @@ Public Class IRForm
         headerByte(15) = &H0
         headerByte(16) = &H0
         headerByte(17) = &H0
-
-        'For row As Integer = 0 To 8
-        '    ListBox1.Items.Add(Hex(headerByte(row)))
-        'Next
 
     End Sub
 
@@ -415,6 +412,14 @@ Public Class IRForm
         headerByte(17) = &HCD
 
         SerialPort1.Write(headerByte, 0, 18)
+    End Sub
+
+    Private Sub IRForm_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Me.Text = e.KeyCode.ToString
+    End Sub
+
+    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
+        Me.Text = e.KeyCode.ToString
     End Sub
 End Class
 

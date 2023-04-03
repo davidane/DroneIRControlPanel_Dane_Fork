@@ -42,23 +42,16 @@ Partial Class IRForm
         Me.rightButton = New System.Windows.Forms.Button()
         Me.downButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
-
         Me.ZoomInButton = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.carsonButton = New System.Windows.Forms.Button()
         Me.daneButton = New System.Windows.Forms.Button()
         Me.ZoomOutButton = New System.Windows.Forms.Button()
-
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.daneButton = New System.Windows.Forms.Button()
         Me.pointTwoDegreeRadioButton = New System.Windows.Forms.RadioButton()
         Me.oneDegreeRadioButton = New System.Windows.Forms.RadioButton()
         Me.fiveDegreesRadioButton = New System.Windows.Forms.RadioButton()
         Me.fifteenDegreesRadioButton = New System.Windows.Forms.RadioButton()
         Me.twentyFiveDegreesRadioButton = New System.Windows.Forms.RadioButton()
         Me.fourtyFiveDegreesRadioButton = New System.Windows.Forms.RadioButton()
-
         Me.SuspendLayout()
         '
         'GimbalButton1
@@ -229,23 +222,14 @@ Partial Class IRForm
         Me.ZoomInButton.Text = "Zoom In"
         Me.ZoomInButton.UseVisualStyleBackColor = True
         '
-
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(23, 218)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 21
-        Me.Label1.Text = "Label1"
+        'carsonButton
         '
-
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(345, 212)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 22
-        Me.Button2.Text = "Carson's"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.carsonButton.Location = New System.Drawing.Point(345, 212)
+        Me.carsonButton.Name = "carsonButton"
+        Me.carsonButton.Size = New System.Drawing.Size(75, 23)
+        Me.carsonButton.TabIndex = 22
+        Me.carsonButton.Text = "Carson's"
+        Me.carsonButton.UseVisualStyleBackColor = True
         '
         'daneButton
         '
@@ -256,7 +240,6 @@ Partial Class IRForm
         Me.daneButton.Text = "Dane's Button"
         Me.daneButton.UseVisualStyleBackColor = True
         '
-
         'ZoomOutButton
         '
         Me.ZoomOutButton.Location = New System.Drawing.Point(12, 257)
@@ -265,7 +248,7 @@ Partial Class IRForm
         Me.ZoomOutButton.TabIndex = 23
         Me.ZoomOutButton.Text = "Zoom out"
         Me.ZoomOutButton.UseVisualStyleBackColor = True
-
+        '
         'pointTwoDegreeRadioButton
         '
         Me.pointTwoDegreeRadioButton.AutoSize = True
@@ -331,31 +314,22 @@ Partial Class IRForm
         Me.fourtyFiveDegreesRadioButton.TabStop = True
         Me.fourtyFiveDegreesRadioButton.Text = "45 degrees"
         Me.fourtyFiveDegreesRadioButton.UseVisualStyleBackColor = True
-
         '
         'IRForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-
-        Me.ClientSize = New System.Drawing.Size(554, 328)
-        Me.Controls.Add(Me.ZoomOutButton)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.daneButton)
-        Me.Controls.Add(Me.ZoomInButton)
-
         Me.ClientSize = New System.Drawing.Size(831, 471)
+        Me.Controls.Add(Me.ZoomOutButton)
+        Me.Controls.Add(Me.ZoomInButton)
         Me.Controls.Add(Me.fourtyFiveDegreesRadioButton)
         Me.Controls.Add(Me.twentyFiveDegreesRadioButton)
         Me.Controls.Add(Me.fifteenDegreesRadioButton)
         Me.Controls.Add(Me.fiveDegreesRadioButton)
         Me.Controls.Add(Me.oneDegreeRadioButton)
         Me.Controls.Add(Me.pointTwoDegreeRadioButton)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.carsonButton)
         Me.Controls.Add(Me.daneButton)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Button1)
-
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.downButton)
         Me.Controls.Add(Me.rightButton)
@@ -400,7 +374,7 @@ Partial Class IRForm
     Friend WithEvents ExitButton As Button
     Friend WithEvents ZoomInButton As Button
 
-    Friend WithEvents Button2 As Button
+    Friend WithEvents carsonButton As Button
 
     Friend WithEvents daneButton As Button
 

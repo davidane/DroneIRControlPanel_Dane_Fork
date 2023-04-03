@@ -454,31 +454,20 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ZoomInButton.Click, ZoomOutButton.Click
-
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        'this is my button, click it and your computer dies
-    End Sub
-
-
-        headerByte(9) = &H5A
-        headerByte(10) = &H0
-        headerByte(11) = &H0
-        headerByte(12) = &H0
-        headerByte(13) = &H0
-        headerByte(14) = &H0
-        headerByte(15) = &H0
-        headerByte(16) = &HB2
-        headerByte(17) = &HD8
-
-        SerialPort1.Write(headerByte, 0, 18)
-    End Sub
 
 
 
+    'headerByte(9) = &H5A
+    'headerByte(10) = &H0
+    'headerByte(11) = &H0
+    'headerByte(12) = &H0
+    'headerByte(13) = &H0
+    'headerByte(14) = &H0
+    'headerByte(15) = &H0
+    'headerByte(16) = &HB2
+    'headerByte(17) = &HD8
+
+    'SerialPort1.Write(headerByte, 0, 18)
+    'End Sub
 
 End Class
-
-''danes comment''
-'comment 

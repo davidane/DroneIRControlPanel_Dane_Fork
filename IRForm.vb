@@ -1,9 +1,11 @@
-
 Option Explicit On
 Option Strict On
+
+Imports System.Text
+
 Public Class IRForm
     Dim headerByte(17) As Byte
-    Dim directModeBool, stabalizeModeBool, offModeBool As Boolean
+    Dim directModeBool, stabalizeModeBool, offModeBool, pointTwoDegreeBool, oneDegreeBool, fiveDegreeBool, fifteenDegreeBool, twentyFiveDegreeBool, fourtyFiveDegreeBool As Boolean
     Private Sub IRForm_Load(sender As Object, e As EventArgs) Handles Me.Load
         SerialPort1.PortName = "COM5" 'name serial port
         SerialPort1.BaudRate = 57600  'set baud rate 19.2k
@@ -13,9 +15,16 @@ Public Class IRForm
         SerialPort1.Open() 'intialize and open port
         'Timer1.Enabled = True 'enable timer 1 on form
 
-        RadioButton1.Checked = True
-        RadioButton2.Checked = False
-        RadioButton3.Checked = False
+        offModeRadioButton.Checked = True
+        directModeRadioButton.Checked = False
+        stabilizeModeRadioButton.Checked = False
+
+        pointTwoDegreeBool = False
+        oneDegreeBool = False
+        fiveDegreeBool = True
+        fifteenDegreeBool = False
+        twentyFiveDegreeBool = False
+        fourtyFiveDegreeBool = False
 
         directionalButtonsOff()
 
@@ -152,10 +161,10 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
-        If RadioButton1.Checked = True Then
-            RadioButton2.Checked = False
-            RadioButton3.Checked = False
+    Private Sub offModeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles offModeRadioButton.CheckedChanged
+        If offModeRadioButton.Checked = True Then
+            directModeRadioButton.Checked = False
+            stabilizeModeRadioButton.Checked = False
 
             offModeEnabled()
         End If
@@ -165,26 +174,97 @@ Public Class IRForm
         leftButton.Enabled = False
         rightButton.Enabled = False
     End Sub
-    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
-        If RadioButton2.Checked = True Then
-            RadioButton1.Checked = False
-            RadioButton3.Checked = False
+    Private Sub directModeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles directModeRadioButton.CheckedChanged
+        If directModeRadioButton.Checked = True Then
+            offModeRadioButton.Checked = False
+            stabilizeModeRadioButton.Checked = False
 
             directModeEnabled()
         End If
 
         directionalButtonsOn()
     End Sub
-    Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton3.CheckedChanged
-        If RadioButton3.Checked = True Then
-            RadioButton1.Checked = False
-            RadioButton2.Checked = False
+    Private Sub stabilizeModeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles stabilizeModeRadioButton.CheckedChanged
+        If stabilizeModeRadioButton.Checked = True Then
+            offModeRadioButton.Checked = False
+            directModeRadioButton.Checked = False
 
             stabalizeModeEnabled()
         End If
 
         directionalButtonsOn()
     End Sub
+
+    Private Sub pointTwoDegreeEnable()
+
+    End Sub
+
+    Private Sub pointTwoDegreeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles pointTwoDegreeRadioButton.CheckedChanged
+        If pointTwoDegreeRadioButton.Checked = True Then
+            pointTwoDegreeBool = True
+            oneDegreeBool = False
+            fiveDegreeBool = False
+            fifteenDegreeBool = False
+            twentyFiveDegreeBool = False
+            fourtyFiveDegreeBool = False
+        End If
+    End Sub
+
+    Private Sub oneDegreeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles oneDegreeRadioButton.CheckedChanged
+        If oneDegreeRadioButton.Checked = True Then
+            pointTwoDegreeBool = False
+            oneDegreeBool = True
+            fiveDegreeBool = False
+            fifteenDegreeBool = False
+            twentyFiveDegreeBool = False
+            fourtyFiveDegreeBool = False
+        End If
+    End Sub
+
+    Private Sub fiveDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles fiveDegreesRadioButton.CheckedChanged
+        If fiveDegreesRadioButton.Checked = True Then
+            pointTwoDegreeBool = False
+            oneDegreeBool = False
+            fiveDegreeBool = True
+            fifteenDegreeBool = False
+            twentyFiveDegreeBool = False
+            fourtyFiveDegreeBool = False
+        End If
+    End Sub
+
+    Private Sub fifteenDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles fifteenDegreesRadioButton.CheckedChanged
+        If fifteenDegreesRadioButton.Checked Then
+            pointTwoDegreeBool = False
+            oneDegreeBool = False
+            fiveDegreeBool = False
+            fifteenDegreeBool = True
+            twentyFiveDegreeBool = False
+            fourtyFiveDegreeBool = False
+        End If
+    End Sub
+
+    Private Sub twentyFiveDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles twentyFiveDegreesRadioButton.CheckedChanged
+        If twentyFiveDegreesRadioButton.Checked = True Then
+            pointTwoDegreeBool = False
+            oneDegreeBool = False
+            fiveDegreeBool = False
+            fifteenDegreeBool = False
+            twentyFiveDegreeBool = True
+            fourtyFiveDegreeBool = False
+        End If
+    End Sub
+
+    Private Sub fourtyFiveDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles fourtyFiveDegreesRadioButton.CheckedChanged
+        If fourtyFiveDegreesRadioButton.Checked = True Then
+            pointTwoDegreeBool = False
+            oneDegreeBool = False
+            fiveDegreeBool = False
+            fifteenDegreeBool = False
+            twentyFiveDegreeBool = False
+            fourtyFiveDegreeBool = True
+        End If
+    End Sub
+
     Private Sub directionalButtonsOn()
         upButton.Enabled = True
         downButton.Enabled = True
@@ -347,6 +427,7 @@ Public Class IRForm
     Private Sub directDownBytes16()
         headerByte(16) = &H3A
     End Sub
+
     Private Sub stabalizeDownBytes16()
         headerByte(16) = &HCA
     End Sub
@@ -373,6 +454,7 @@ Public Class IRForm
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Label1.Text = "pressed"
+
     End Sub
 
     Private Sub Button1_MouseDown(sender As Object, e As MouseEventArgs) Handles Button1.MouseDown

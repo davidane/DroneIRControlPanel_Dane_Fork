@@ -360,24 +360,57 @@ Public Class IRForm
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
+    Private Sub ZoomOutButton_click(sender As Object, e As MouseEventArgs) Handles ZoomOutButton.MouseDown
+        headerByte(9) = &H5A
+        headerByte(10) = &HFF
+        headerByte(11) = &H0
+        headerByte(12) = &H0
+        headerByte(13) = &H0
+        headerByte(14) = &H1
+        headerByte(15) = &H0
+        headerByte(16) = &H2D
+        headerByte(17) = &HCD
+
+        SerialPort1.Write(headerByte, 0, 18)
+    End Sub
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ZoomInButton.Click, ZoomOutButton.Click
 
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         'this is my button, click it and your computer dies
     End Sub
 
-    Private Sub daneButton_Click(sender As Object, e As EventArgs) Handles daneButton.Click
-        'this is my button
 
+        headerByte(9) = &H5A
+        headerByte(10) = &H0
+        headerByte(11) = &H0
+        headerByte(12) = &H0
+        headerByte(13) = &H0
+        headerByte(14) = &H0
+        headerByte(15) = &H0
+        headerByte(16) = &HB2
+        headerByte(17) = &HD8
+
+        SerialPort1.Write(headerByte, 0, 18)
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Label1.Text = "pressed"
+    Private Sub Button1_MouseDown(sender As Object, e As MouseEventArgs) Handles ZoomInButton.MouseDown
+
+
+        headerByte(9) = &H5A
+        headerByte(10) = &H1
+        headerByte(11) = &H0
+        headerByte(12) = &H0
+        headerByte(13) = &H0
+        headerByte(14) = &H1
+        headerByte(15) = &H0
+        headerByte(16) = &HF3
+        headerByte(17) = &HD8
+
+        SerialPort1.Write(headerByte, 0, 18)
     End Sub
 
-    Private Sub Button1_MouseDown(sender As Object, e As MouseEventArgs) Handles Button1.MouseDown
-        Label1.Text = "released"
-    End Sub
+
 End Class
 
 ''danes comment''

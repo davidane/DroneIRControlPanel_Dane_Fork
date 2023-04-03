@@ -376,6 +376,11 @@ Public Class IRForm
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ZoomInButton.Click, ZoomOutButton.Click
 
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        'this is my button, click it and your computer dies
+    End Sub
+
+
         headerByte(9) = &H5A
         headerByte(10) = &H0
         headerByte(11) = &H0

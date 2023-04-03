@@ -13,9 +13,9 @@ Public Class IRForm
         SerialPort1.Open() 'intialize and open port
         'Timer1.Enabled = True 'enable timer 1 on form
 
-        RadioButton1.Checked = True
-        RadioButton2.Checked = False
-        RadioButton3.Checked = False
+        offModeRadioButton.Checked = True
+        directModeRadioButton.Checked = False
+        stabilizeModeRadioButton.Checked = False
 
         directionalButtonsOff()
 
@@ -152,10 +152,10 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
-        If RadioButton1.Checked = True Then
-            RadioButton2.Checked = False
-            RadioButton3.Checked = False
+    Private Sub offModeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles offModeRadioButton.CheckedChanged
+        If offModeRadioButton.Checked = True Then
+            directModeRadioButton.Checked = False
+            stabilizeModeRadioButton.Checked = False
 
             offModeEnabled()
         End If
@@ -165,20 +165,20 @@ Public Class IRForm
         leftButton.Enabled = False
         rightButton.Enabled = False
     End Sub
-    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
-        If RadioButton2.Checked = True Then
-            RadioButton1.Checked = False
-            RadioButton3.Checked = False
+    Private Sub directModeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles directModeRadioButton.CheckedChanged
+        If directModeRadioButton.Checked = True Then
+            offModeRadioButton.Checked = False
+            stabilizeModeRadioButton.Checked = False
 
             directModeEnabled()
         End If
 
         directionalButtonsOn()
     End Sub
-    Private Sub RadioButton3_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton3.CheckedChanged
-        If RadioButton3.Checked = True Then
-            RadioButton1.Checked = False
-            RadioButton2.Checked = False
+    Private Sub stabilizeModeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles stabilizeModeRadioButton.CheckedChanged
+        If stabilizeModeRadioButton.Checked = True Then
+            offModeRadioButton.Checked = False
+            directModeRadioButton.Checked = False
 
             stabalizeModeEnabled()
         End If
@@ -374,11 +374,6 @@ Public Class IRForm
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ZoomInButton.Click, ZoomOutButton.Click
-
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        'this is my button, click it and your computer dies
-    End Sub
 
 
         headerByte(9) = &H5A

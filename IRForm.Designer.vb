@@ -42,13 +42,10 @@ Partial Class IRForm
         Me.rightButton = New System.Windows.Forms.Button()
         Me.downButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-
+        Me.ZoomInButton = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-
         Me.daneButton = New System.Windows.Forms.Button()
-
+        Me.ZoomOutButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'GimbalButton1
@@ -210,25 +207,15 @@ Partial Class IRForm
         Me.ExitButton.Text = "Exit"
         Me.ExitButton.UseVisualStyleBackColor = True
         '
-        'Button1
+        'ZoomInButton
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 167)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 20
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ZoomInButton.Location = New System.Drawing.Point(12, 167)
+        Me.ZoomInButton.Name = "ZoomInButton"
+        Me.ZoomInButton.Size = New System.Drawing.Size(75, 23)
+        Me.ZoomInButton.TabIndex = 20
+        Me.ZoomInButton.Text = "Zoom In"
+        Me.ZoomInButton.UseVisualStyleBackColor = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(23, 218)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 21
-        Me.Label1.Text = "Label1"
-        '
-
         'Button2
         '
         Me.Button2.Location = New System.Drawing.Point(222, 209)
@@ -237,7 +224,7 @@ Partial Class IRForm
         Me.Button2.TabIndex = 22
         Me.Button2.Text = "Carson's"
         Me.Button2.UseVisualStyleBackColor = True
-
+        '
         'daneButton
         '
         Me.daneButton.Location = New System.Drawing.Point(141, 208)
@@ -246,20 +233,25 @@ Partial Class IRForm
         Me.daneButton.TabIndex = 22
         Me.daneButton.Text = "Dane's Button"
         Me.daneButton.UseVisualStyleBackColor = True
-
+        '
+        'ZoomOutButton
+        '
+        Me.ZoomOutButton.Location = New System.Drawing.Point(12, 257)
+        Me.ZoomOutButton.Name = "ZoomOutButton"
+        Me.ZoomOutButton.Size = New System.Drawing.Size(75, 23)
+        Me.ZoomOutButton.TabIndex = 23
+        Me.ZoomOutButton.Text = "Zoom out"
+        Me.ZoomOutButton.UseVisualStyleBackColor = True
         '
         'IRForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(400, 242)
-
+        Me.ClientSize = New System.Drawing.Size(554, 328)
+        Me.Controls.Add(Me.ZoomOutButton)
         Me.Controls.Add(Me.Button2)
-
         Me.Controls.Add(Me.daneButton)
-
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.ZoomInButton)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.downButton)
         Me.Controls.Add(Me.rightButton)
@@ -302,11 +294,10 @@ Partial Class IRForm
     Friend WithEvents rightButton As Button
     Friend WithEvents downButton As Button
     Friend WithEvents ExitButton As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Label1 As Label
+    Friend WithEvents ZoomInButton As Button
 
     Friend WithEvents Button2 As Button
 
     Friend WithEvents daneButton As Button
-
+    Friend WithEvents ZoomOutButton As Button
 End Class

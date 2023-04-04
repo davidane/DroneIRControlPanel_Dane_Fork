@@ -342,52 +342,6 @@ Public Class IRForm
         headerByte(12) = &H0
         headerByte(13) = &H80
 
-
-
-
-        'controlGimbalByte9()
-
-        'If directModeBool = True Then
-        '    directBytes10()
-        '    If pointTwoDegreeBool = True Then
-
-        '    ElseIf oneDegreeBool = True Then
-
-        '    ElseIf fiveDegreeBool = True Then
-
-        '    ElseIf fifteenDegreeBool = True Then
-
-        '    ElseIf twentyFiveDegreeBool = True Then
-
-        '    ElseIf fourtyFiveDegreeBool = True Then
-
-        '    End If
-        '    directUpBytes16()
-        '    directUpDownBytes17()
-        'ElseIf stabalizeModeBool = True Then
-        '    stabalizeBytes10()
-        '    If pointTwoDegreeBool = True Then
-
-        '    ElseIf oneDegreeBool = True Then
-
-        '    ElseIf fiveDegreeBool = True Then
-
-        '    ElseIf fifteenDegreeBool = True Then
-
-        '    ElseIf twentyFiveDegreeBool = True Then
-
-        '    ElseIf fourtyFiveDegreeBool = True Then
-
-        '    End If
-        '    stabalizeUpBytes16()
-        '    stabalizeUpDownBytes17()
-        'End If
-
-        'controlGimbalBytes11()
-        'upDownBytes1213()
-        'upBytes1415()
-
-
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub downButton_Click(sender As Object, e As EventArgs) Handles downButton.Click
@@ -497,18 +451,17 @@ Public Class IRForm
             MsgBox("enter key pressd ")
         End If
     End Sub
-End Class
 
     Private Sub pointTwoDegreeMode()
-        pointTwoDegreeBool = True
-        oneDegreeBool = False
-        fiveDegreeBool = False
-        fifteenDegreeBool = False
-        twentyFiveDegreeBool = False
-        fourtyFiveDegreeBool = False
-    End Sub
+    pointTwoDegreeBool = True
+    oneDegreeBool = False
+    fiveDegreeBool = False
+    fifteenDegreeBool = False
+    twentyFiveDegreeBool = False
+    fourtyFiveDegreeBool = False
+End Sub
 
-    Private Sub oneDegreeMode()
+Private Sub oneDegreeMode()
         pointTwoDegreeBool = False
         oneDegreeBool = True
         fiveDegreeBool = False

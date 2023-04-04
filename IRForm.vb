@@ -193,265 +193,274 @@ Public Class IRForm
         directionalButtonsOn()
     End Sub
 
-    Private Sub pointTwoDegreeEnable()
-
-    End Sub
 
     Private Sub pointTwoDegreeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles pointTwoDegreeRadioButton.CheckedChanged
         If pointTwoDegreeRadioButton.Checked = True Then
-            pointTwoDegreeBool = True
-            oneDegreeBool = False
-            fiveDegreeBool = False
-            fifteenDegreeBool = False
-            twentyFiveDegreeBool = False
-            fourtyFiveDegreeBool = False
+            oneDegreeRadioButton.Checked = False
+            fiveDegreesRadioButton.Checked = False
+            fifteenDegreesRadioButton.Checked = False
+            twentyFiveDegreesRadioButton.Checked = False
+            fourtyFiveDegreesRadioButton.Checked = False
+
+            pointTwoDegreeMode()
         End If
     End Sub
 
     Private Sub oneDegreeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles oneDegreeRadioButton.CheckedChanged
         If oneDegreeRadioButton.Checked = True Then
-            pointTwoDegreeBool = False
-            oneDegreeBool = True
-            fiveDegreeBool = False
-            fifteenDegreeBool = False
-            twentyFiveDegreeBool = False
-            fourtyFiveDegreeBool = False
+            pointTwoDegreeRadioButton.Checked = False
+            fiveDegreesRadioButton.Checked = False
+            fifteenDegreesRadioButton.Checked = False
+            twentyFiveDegreesRadioButton.Checked = False
+            fourtyFiveDegreesRadioButton.Checked = False
+
+            oneDegreeMode()
         End If
     End Sub
 
     Private Sub fiveDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles fiveDegreesRadioButton.CheckedChanged
         If fiveDegreesRadioButton.Checked = True Then
-            pointTwoDegreeBool = False
-            oneDegreeBool = False
-            fiveDegreeBool = True
-            fifteenDegreeBool = False
-            twentyFiveDegreeBool = False
-            fourtyFiveDegreeBool = False
+            pointTwoDegreeRadioButton.Checked = False
+            oneDegreeRadioButton.Checked = False
+            fifteenDegreesRadioButton.Checked = False
+            twentyFiveDegreesRadioButton.Checked = False
+            fourtyFiveDegreesRadioButton.Checked = False
+
+            fiveDegreeMode()
         End If
     End Sub
 
     Private Sub fifteenDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles fifteenDegreesRadioButton.CheckedChanged
         If fifteenDegreesRadioButton.Checked Then
-            pointTwoDegreeBool = False
-            oneDegreeBool = False
-            fiveDegreeBool = False
-            fifteenDegreeBool = True
-            twentyFiveDegreeBool = False
-            fourtyFiveDegreeBool = False
+            pointTwoDegreeRadioButton.Checked = False
+            oneDegreeRadioButton.Checked = False
+            fiveDegreesRadioButton.Checked = False
+            twentyFiveDegreesRadioButton.Checked = False
+            fourtyFiveDegreesRadioButton.Checked = False
+
+            fifteenDegreeMode()
         End If
     End Sub
 
     Private Sub twentyFiveDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles twentyFiveDegreesRadioButton.CheckedChanged
         If twentyFiveDegreesRadioButton.Checked = True Then
-            pointTwoDegreeBool = False
-            oneDegreeBool = False
-            fiveDegreeBool = False
-            fifteenDegreeBool = False
-            twentyFiveDegreeBool = True
-            fourtyFiveDegreeBool = False
+            pointTwoDegreeRadioButton.Checked = False
+            oneDegreeRadioButton.Checked = False
+            fiveDegreesRadioButton.Checked = False
+            fifteenDegreesRadioButton.Checked = False
+            fourtyFiveDegreesRadioButton.Checked = False
+
+            twentyFiveDegreeMode()
         End If
     End Sub
 
     Private Sub fourtyFiveDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles fourtyFiveDegreesRadioButton.CheckedChanged
         If fourtyFiveDegreesRadioButton.Checked = True Then
-            pointTwoDegreeBool = False
-            oneDegreeBool = False
-            fiveDegreeBool = False
-            fifteenDegreeBool = False
-            twentyFiveDegreeBool = False
-            fourtyFiveDegreeBool = True
+            pointTwoDegreeRadioButton.Checked = False
+            oneDegreeRadioButton.Checked = False
+            fiveDegreesRadioButton.Checked = False
+            fifteenDegreesRadioButton.Checked = False
+            twentyFiveDegreesRadioButton.Checked = False
+
+            fourtyFiveDegreeMode()
         End If
     End Sub
 
-    Private Sub directionalButtonsOn()
-        upButton.Enabled = True
-        downButton.Enabled = True
-        leftButton.Enabled = True
-        rightButton.Enabled = True
-    End Sub
-    Private Sub directionalButtonsOff()
-        upButton.Enabled = False
-        downButton.Enabled = False
-        leftButton.Enabled = False
-        rightButton.Enabled = False
-    End Sub
-    Private Sub offModeEnabled()
-        offModeBool = True
-        directModeBool = False
-        stabalizeModeBool = False
-        headerByte(10) = &H0
-    End Sub
-    Private Sub directModeEnabled()
-        offModeBool = False
-        directModeBool = True
-        stabalizeModeBool = False
-    End Sub
-    Private Sub stabalizeModeEnabled()
-        offModeBool = False
-        directModeBool = False
-        stabalizeModeBool = True
-    End Sub
     Private Sub leftButton_Click(sender As Object, e As EventArgs) Handles leftButton.Click
-        controlGimbalByte9()
 
-        If directModeBool = True Then
-            directBytes10()
-            directLeftBytes1617()
-        ElseIf stabalizeModeBool = True Then
-            stabalizeBytes10()
-            stabalizeLeftBytes1617()
-        End If
 
-        controlGimbalBytes11()
-        LeftBytes1213()
-        LeftRightBytes1415()
+        'controlGimbalByte9()
+        'degreeCheck()
 
-        SerialPort1.Write(headerByte, 0, 18)
+        'If directModeBool = True Then
+        '    directBytes10()
+        '    If pointTwoDegreeBool = True Then
+
+        '    ElseIf oneDegreeBool = True Then
+
+        '    ElseIf fiveDegreeBool = True Then
+
+        '    ElseIf fifteenDegreeBool = True Then
+
+        '    ElseIf twentyFiveDegreeBool = True Then
+
+        '    ElseIf fourtyFiveDegreeBool = True Then
+
+        '    End If
+
+        '    directLeftBytes1617()
+        'ElseIf stabalizeModeBool = True Then
+        '    stabalizeBytes10()If pointTwoDegreeBool = True Then
+
+        'ElseIf oneDegreeBool = True Then
+
+        'ElseIf fiveDegreeBool = True Then
+
+        'ElseIf fifteenDegreeBool = True Then
+
+        'ElseIf twentyFiveDegreeBool = True Then
+
+        'ElseIf fourtyFiveDegreeBool = True Then
+
+        'End If
+
+        'stabalizeLeftBytes1617()
+        'End If
+
+        'controlGimbalBytes11()
+        'LeftBytes1213()
+        'LeftRightBytes1415()
+
+        'SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub rightButton_Click(sender As Object, e As EventArgs) Handles rightButton.Click
-        controlGimbalByte9()
 
-        If directModeBool = True Then
-            directBytes10()
-            directRightBytes1617()
-        ElseIf stabalizeModeBool = True Then
-            stabalizeBytes10()
-            stabalizeRightBytes1617()
-        End If
 
-        controlGimbalBytes11()
-        RightBytes1213()
-        LeftRightBytes1415()
+        'controlGimbalByte9()
 
-        SerialPort1.Write(headerByte, 0, 18)
+        'If directModeBool = True Then
+        '    directBytes10()
+        '    If pointTwoDegreeBool = True Then
+
+        '    ElseIf oneDegreeBool = True Then
+
+        '    ElseIf fiveDegreeBool = True Then
+
+        '    ElseIf fifteenDegreeBool = True Then
+
+        '    ElseIf twentyFiveDegreeBool = True Then
+
+        '    ElseIf fourtyFiveDegreeBool = True Then
+
+        '    End If
+        '    RightBytes1213
+        '    directRightBytes1617()
+        'ElseIf stabalizeModeBool = True Then
+        '    stabalizeBytes10()
+        '    If pointTwoDegreeBool = True Then
+
+        '    ElseIf oneDegreeBool = True Then
+
+        '    ElseIf fiveDegreeBool = True Then
+
+        '    ElseIf fifteenDegreeBool = True Then
+
+        '    ElseIf twentyFiveDegreeBool = True Then
+
+        '    ElseIf fourtyFiveDegreeBool = True Then
+
+        '    End If
+        '    RightBytes1213
+        '    stabalizeRightBytes1617()
+        'End If
+
+        'LeftRightBytes1415()
+
+        'controlGimbalBytes11()
+
+
+        'SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub upButton_Click(sender As Object, e As EventArgs) Handles upButton.Click
-        controlGimbalByte9()
-
-        If directModeBool = True Then
-            directBytes10()
-            directUpBytes16()
-            directUpDownBytes17()
-        ElseIf stabalizeModeBool = True Then
-            stabalizeBytes10()
-            stabalizeUpBytes16()
-            stabalizeUpDownBytes17()
-        End If
-        controlGimbalBytes11()
-        upDownBytes1213()
-        upBytes1415()
 
 
-        SerialPort1.Write(headerByte, 0, 18)
+        'controlGimbalByte9()
+
+        'If directModeBool = True Then
+        '    directBytes10()
+        '    If pointTwoDegreeBool = True Then
+
+        '    ElseIf oneDegreeBool = True Then
+
+        '    ElseIf fiveDegreeBool = True Then
+
+        '    ElseIf fifteenDegreeBool = True Then
+
+        '    ElseIf twentyFiveDegreeBool = True Then
+
+        '    ElseIf fourtyFiveDegreeBool = True Then
+
+        '    End If
+        '    directUpBytes16()
+        '    directUpDownBytes17()
+        'ElseIf stabalizeModeBool = True Then
+        '    stabalizeBytes10()
+        '    If pointTwoDegreeBool = True Then
+
+        '    ElseIf oneDegreeBool = True Then
+
+        '    ElseIf fiveDegreeBool = True Then
+
+        '    ElseIf fifteenDegreeBool = True Then
+
+        '    ElseIf twentyFiveDegreeBool = True Then
+
+        '    ElseIf fourtyFiveDegreeBool = True Then
+
+        '    End If
+        '    stabalizeUpBytes16()
+        '    stabalizeUpDownBytes17()
+        'End If
+
+        'controlGimbalBytes11()
+        'upDownBytes1213()
+        'upBytes1415()
+
+
+        'SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub downButton_Click(sender As Object, e As EventArgs) Handles downButton.Click
-        controlGimbalByte9()
 
-        If directModeBool = True Then
-            directBytes10()
-            directDownBytes16()
-            directUpDownBytes17()
-        ElseIf stabalizeModeBool = True Then
-            stabalizeBytes10()
-            stabalizeDownBytes16()
-            stabalizeUpDownBytes17()
-        End If
-        controlGimbalBytes11()
-        upDownBytes1213()
-        downBytes1415()
 
-        SerialPort1.Write(headerByte, 0, 18)
-    End Sub
-    Private Sub controlGimbalByte9()
-        headerByte(9) = &H47
-    End Sub
-    Private Sub directBytes10()
-        headerByte(10) = &H10
-    End Sub
-    Private Sub stabalizeBytes10()
-        headerByte(10) = &H20
-    End Sub
-    Private Sub controlGimbalBytes11()
-        headerByte(11) = &H0
-    End Sub
-    Private Sub LeftBytes1213()
-        headerByte(12) = &H97
-        headerByte(13) = &H7C
-    End Sub
-    Private Sub RightBytes1213()
-        headerByte(12) = &H69
-        headerByte(13) = &H83
-    End Sub
-    Private Sub LeftRightBytes1415()
-        headerByte(14) = &H0
-        headerByte(15) = &H80
-    End Sub
-    Private Sub directLeftBytes1617()
-        headerByte(16) = &H2F
-        headerByte(17) = &HFB
-    End Sub
-    Private Sub stabalizeLeftBytes1617()
-        headerByte(16) = &HDF
-        headerByte(17) = &HFE
-    End Sub
-    Private Sub directRightBytes1617()
-        headerByte(16) = &HF7
-        headerByte(17) = &HFA
-    End Sub
-    Private Sub stabalizeRightBytes1617()
-        headerByte(16) = &H7
-        headerByte(17) = &HFF
-    End Sub
-    Private Sub upDownBytes1213()
-        headerByte(12) = &H0
-        headerByte(13) = &H80
-    End Sub
-    Private Sub upBytes1415()
-        headerByte(14) = &H97
-        headerByte(15) = &H7C
-    End Sub
-    Private Sub directUpBytes16()
-        headerByte(16) = &H1A
-    End Sub
-    Private Sub stabalizeUpBytes16()
-        headerByte(16) = &HEA
-    End Sub
-    Private Sub downBytes1415()
-        headerByte(14) = &H69
-        headerByte(15) = &H83
-    End Sub
-    Private Sub directDownBytes16()
-        headerByte(16) = &H3A
-    End Sub
+        'controlGimbalByte9()
 
-    Private Sub stabalizeDownBytes16()
-        headerByte(16) = &HCA
-    End Sub
-    Private Sub directUpDownBytes17()
-        headerByte(17) = &H79
-    End Sub
+        'If directModeBool = True Then
+        '    directBytes10()
+        '    If pointTwoDegreeBool = True Then
 
-    Private Sub stabalizeUpDownBytes17()
-        headerByte(17) = &H7C
+        '    ElseIf oneDegreeBool = True Then
+
+        '    ElseIf fiveDegreeBool = True Then
+
+        '    ElseIf fifteenDegreeBool = True Then
+
+        '    ElseIf twentyFiveDegreeBool = True Then
+
+        '    ElseIf fourtyFiveDegreeBool = True Then
+
+        '    End If
+        'directDownBytes16()
+        '    directUpDownBytes17()
+        'ElseIf stabalizeModeBool = True Then
+        '    stabalizeBytes10()
+        '    If pointTwoDegreeBool = True Then
+
+        '    ElseIf oneDegreeBool = True Then
+
+        '    ElseIf fiveDegreeBool = True Then
+
+        '    ElseIf fifteenDegreeBool = True Then
+
+        '    ElseIf twentyFiveDegreeBool = True Then
+
+        '    ElseIf fourtyFiveDegreeBool = True Then
+
+        '    End If
+        '    stabalizeDownBytes16()
+        '    stabalizeUpDownBytes17()
+        'End If
+
+        'controlGimbalBytes11()
+        'upDownBytes1213()
+        'downBytes1415()
+
+        'SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
-    Private Sub ZoomOutButton_click(sender As Object, e As MouseEventArgs) Handles ZoomOutButton.MouseDown
-        headerByte(9) = &H5A
-        headerByte(10) = &HFF
-        headerByte(11) = &H0
-        headerByte(12) = &H0
-        headerByte(13) = &H0
-        headerByte(14) = &H1
-        headerByte(15) = &H0
-        headerByte(16) = &H2D
-        headerByte(17) = &HCD
 
-        SerialPort1.Write(headerByte, 0, 18)
-    End Sub
-
-    Private Sub ZoomInButton_Click(sender As Object, e As EventArgs) Handles ZoomInButton.Click, ZoomOutButton.Click
+    Private Sub zoomStop(sender As Object, e As EventArgs) Handles ZoomInButton.MouseUp, ZoomOutButton.MouseUp
 
         headerByte(9) = &H5A
         headerByte(10) = &H0
@@ -481,9 +490,8 @@ Public Class IRForm
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub ZoomOutButton_MouseDown(sender As Object, e As MouseEventArgs) Handles ZoomOutButton.MouseDown
-
         headerByte(9) = &H5A
-        headerByte(10) = &H1
+        headerByte(10) = &HFF
         headerByte(11) = &H0
         headerByte(12) = &H0
         headerByte(13) = &H0
@@ -492,7 +500,351 @@ Public Class IRForm
         headerByte(16) = &H2D
         headerByte(17) = &HCD
 
-
         SerialPort1.Write(headerByte, 0, 18)
+    End Sub
+    Private Sub directionalButtonsOn()
+        upButton.Enabled = True
+        downButton.Enabled = True
+        leftButton.Enabled = True
+        rightButton.Enabled = True
+    End Sub
+    Private Sub directionalButtonsOff()
+        upButton.Enabled = False
+        downButton.Enabled = False
+        leftButton.Enabled = False
+        rightButton.Enabled = False
+    End Sub
+    Private Sub offModeEnabled()
+        offModeBool = True
+        directModeBool = False
+        stabalizeModeBool = False
+        headerByte(10) = &H0
+    End Sub
+    Private Sub directModeEnabled()
+        offModeBool = False
+        directModeBool = True
+        stabalizeModeBool = False
+    End Sub
+    Private Sub stabalizeModeEnabled()
+        offModeBool = False
+        directModeBool = False
+        stabalizeModeBool = True
+    End Sub
+
+    Private Sub controlGimbalByte9()
+        headerByte(9) = &H47
+    End Sub
+    Private Sub directBytes10()
+        headerByte(10) = &H10
+    End Sub
+    Private Sub stabalizeBytes10()
+        headerByte(10) = &H20
+    End Sub
+    Private Sub controlGimbalBytes11()
+        headerByte(11) = &H0
+    End Sub
+
+    Private Sub pointTwoDegreeMode()
+        pointTwoDegreeBool = True
+        oneDegreeBool = False
+        fiveDegreeBool = False
+        fifteenDegreeBool = False
+        twentyFiveDegreeBool = False
+        fourtyFiveDegreeBool = False
+    End Sub
+
+    Private Sub oneDegreeMode()
+        pointTwoDegreeBool = False
+        oneDegreeBool = True
+        fiveDegreeBool = False
+        fifteenDegreeBool = False
+        twentyFiveDegreeBool = False
+        fourtyFiveDegreeBool = False
+    End Sub
+
+    Private Sub fiveDegreeMode()
+        pointTwoDegreeBool = False
+        oneDegreeBool = False
+        fiveDegreeBool = True
+        fifteenDegreeBool = False
+        twentyFiveDegreeBool = False
+        fourtyFiveDegreeBool = False
+    End Sub
+
+    Private Sub fifteenDegreeMode()
+        pointTwoDegreeBool = False
+        oneDegreeBool = False
+        fiveDegreeBool = False
+        fifteenDegreeBool = True
+        twentyFiveDegreeBool = False
+        fourtyFiveDegreeBool = False
+    End Sub
+
+    Private Sub twentyFiveDegreeMode()
+        pointTwoDegreeBool = False
+        oneDegreeBool = False
+        fiveDegreeBool = False
+        fifteenDegreeBool = False
+        twentyFiveDegreeBool = True
+        fourtyFiveDegreeBool = False
+    End Sub
+
+    Private Sub fourtyFiveDegreeMode()
+        pointTwoDegreeBool = False
+        oneDegreeBool = False
+        fiveDegreeBool = False
+        fifteenDegreeBool = False
+        twentyFiveDegreeBool = False
+        fourtyFiveDegreeBool = True
+    End Sub
+
+    'Private Sub LeftFiveDegBytes1213()
+    '    headerByte(12) = &H97
+    '    headerByte(13) = &H7C
+    'End Sub
+    'Private Sub RightFiveDegBytes1213()
+    '    headerByte(12) = &H69
+    '    headerByte(13) = &H83
+    'End Sub
+    'Private Sub LeftRightBytes1415()
+    '    headerByte(14) = &H0
+    '    headerByte(15) = &H80
+    'End Sub
+    'Private Sub directLeftFiveDegBytes1617()
+    '    headerByte(16) = &H2F
+    '    headerByte(17) = &HFB
+    'End Sub
+    'Private Sub stabalizeLeftFiveDegBytes1617()
+    '    headerByte(16) = &HDF
+    '    headerByte(17) = &HFE
+    'End Sub
+    'Private Sub directRightFiveDegBytes1617()
+    '    headerByte(16) = &HF7
+    '    headerByte(17) = &HFA
+    'End Sub
+    'Private Sub stabalizeRightFiveDegBytes1617()
+    '    headerByte(16) = &H7
+    '    headerByte(17) = &HFF
+    'End Sub
+    'Private Sub upDownBytes1213()
+    '    headerByte(12) = &H0
+    '    headerByte(13) = &H80
+    'End Sub
+    'Private Sub upBytes1415()
+    '    headerByte(14) = &H97
+    '    headerByte(15) = &H7C
+    'End Sub
+    'Private Sub directUpBytes16()
+    '    headerByte(16) = &H1A
+    'End Sub
+    'Private Sub stabalizeUpBytes16()
+    '    headerByte(16) = &HEA
+    'End Sub
+    'Private Sub downBytes1415()
+    '    headerByte(14) = &H69
+    '    headerByte(15) = &H83
+    'End Sub
+    'Private Sub directDownBytes16()
+    '    headerByte(16) = &H3A
+    'End Sub
+
+    'Private Sub stabalizeDownBytes16()
+    '    headerByte(16) = &HCA
+    'End Sub
+    'Private Sub directUpDownBytes17()
+    '    headerByte(17) = &H79
+    'End Sub
+
+    'Private Sub stabalizeUpDownBytes17()
+    '    headerByte(17) = &H7C
+    'End Sub
+
+
+    Private Sub whichButton()
+        If 
+    End Sub
+    Private Sub whichModeUp()
+
+    End Sub
+    Private Sub whichModeLeft()
+
+    End Sub
+    Private Sub whichModeDown()
+
+    End Sub
+    Private Sub whichModeRight()
+
+    End Sub
+    Private Sub whichAngleDirectUp()
+
+    End Sub
+    Private Sub whichAngleDirectLeft()
+
+    End Sub
+    Private Sub whichAngleDirectDown()
+
+    End Sub
+    Private Sub whichAngleDirectRight()
+
+    End Sub
+    Private Sub whichAngleStabalizeUp()
+
+    End Sub
+    Private Sub whichAngleStabalizeLeft()
+
+    End Sub
+    Private Sub whichAngleStabalizeDown()
+
+    End Sub
+    Private Sub whichAngleStabalizeRight()
+
+    End Sub
+    Private Sub pointTwoDirectUp()
+
+    End Sub
+
+    Private Sub oneDirectUp()
+
+    End Sub
+    Private Sub fiveDirectUp()
+
+    End Sub
+    Private Sub fifteenirectUp()
+
+    End Sub
+    Private Sub twentyFiveDirectUp()
+
+    End Sub
+    Private Sub fourtyFiveDirectUp()
+
+    End Sub
+    Private Sub pointTwoDirectLeft()
+
+    End Sub
+    Private Sub oneDirectLeft()
+
+    End Sub
+    Private Sub fiveDirectLeft()
+
+    End Sub
+    Private Sub fifteenirectLeft()
+
+    End Sub
+    Private Sub twentyFiveDirectLeft()
+
+    End Sub
+    Private Sub fourtyFiveDirectLeft()
+
+    End Sub
+    Private Sub pointTwoDirectDown()
+
+    End Sub
+    Private Sub oneDirectDown()
+
+    End Sub
+    Private Sub fiveDirectDown()
+
+    End Sub
+    Private Sub fifteenirectDown()
+
+    End Sub
+    Private Sub twentyFiveDirectDown()
+
+    End Sub
+    Private Sub fourtyFiveDirectDown()
+
+    End Sub
+    Private Sub pointTwoDirectRight()
+
+    End Sub
+
+    Private Sub oneDirectRight()
+
+    End Sub
+    Private Sub fiveDirectRight()
+
+    End Sub
+    Private Sub fifteenirectRight()
+
+    End Sub
+    Private Sub twentyFiveDirectRight()
+
+    End Sub
+    Private Sub fourtyFiveDirectRight()
+
+    End Sub
+    Private Sub pointTwoStabilizeUp()
+
+    End Sub
+
+    Private Sub oneStabilizeUp()
+
+    End Sub
+    Private Sub fiveStabilizeUp()
+
+    End Sub
+    Private Sub fifteenStabilizeUp()
+
+    End Sub
+    Private Sub twentyFiveStabilizeUp()
+
+    End Sub
+    Private Sub fourtyFiveStabilizeUp()
+
+    End Sub
+    Private Sub pointTwoStabilizeLeft()
+
+    End Sub
+    Private Sub oneStabilizeLeft()
+
+    End Sub
+    Private Sub fiveStabilizeLeft()
+
+    End Sub
+    Private Sub fifteenStabilizeLeft()
+
+    End Sub
+    Private Sub twentyFiveStabilizeLeft()
+
+    End Sub
+    Private Sub fourtyFiveStabilizeLeft()
+
+    End Sub
+    Private Sub pointTwoStabilizeDown()
+
+    End Sub
+    Private Sub oneStabilizeDown()
+
+    End Sub
+    Private Sub fiveStabilizeDown()
+
+    End Sub
+    Private Sub fifteenStabilizeDown()
+
+    End Sub
+    Private Sub twentyFiveStabilizeDown()
+
+    End Sub
+    Private Sub fourtyFiveStabilizeDown()
+
+    End Sub
+    Private Sub pointTwoStabilizeRight()
+
+    End Sub
+
+    Private Sub oneStabilizeRight()
+
+    End Sub
+    Private Sub fiveStabilizeRight()
+
+    End Sub
+    Private Sub fifteenStabilizeRight()
+
+    End Sub
+    Private Sub twentyFiveStabilizeRight()
+
+    End Sub
+    Private Sub fourtyFiveStabilizeRight()
+
     End Sub
 End Class

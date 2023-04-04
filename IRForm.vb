@@ -5,9 +5,9 @@ Imports System.Text
 
 Public Class IRForm
     Dim headerByte(17) As Byte
-    Dim directModeBool, stabalizeModeBool, offModeBool, pointTwoDegreeBool, oneDegreeBool, fiveDegreeBool, fifteenDegreeBool, twentyFiveDegreeBool, fourtyFiveDegreeBool As Boolean
+    Dim directModeBool, stabalizeModeBool, offModeBool, pointTwoDegreeBool, oneDegreeBool, fiveDegreeBool, fifteenDegreeBool, twentyFiveDegreeBool, fourtyFiveDegreeBool, upButtonBool, leftButtonBool, downButtonBool, rightButtonBool As Boolean
     Private Sub IRForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        SerialPort1.PortName = "COM5" 'name serial port
+        SerialPort1.PortName = "COM10" 'name serial port
         SerialPort1.BaudRate = 57600  'set baud rate 19.2k
         SerialPort1.DataBits = 8 'number of data bits is 8
         SerialPort1.StopBits = IO.Ports.StopBits.One 'one stop bit
@@ -267,101 +267,70 @@ Public Class IRForm
     End Sub
 
     Private Sub leftButton_Click(sender As Object, e As EventArgs) Handles leftButton.Click
+        upButtonBool = False
+        leftButtonBool = True
+        downButtonBool = False
+        rightButtonBool = False
 
+        headerByte(9) = &H47
 
-        'controlGimbalByte9()
-        'degreeCheck()
+        If directModeBool = True Then
+            whichAngleDirectLeft()
+            headerByte(10) = &H10
+        ElseIf stabalizeModeBool = True Then
+            whichAngleStabalizeLeft()
+            headerByte(10) = &H20
+        End If
 
-        'If directModeBool = True Then
-        '    directBytes10()
-        '    If pointTwoDegreeBool = True Then
+        headerByte(11) = &H0
+        headerByte(14) = &H0
+        headerByte(15) = &H80
 
-        '    ElseIf oneDegreeBool = True Then
+        SerialPort1.Write(headerByte, 0, 18)
 
-        '    ElseIf fiveDegreeBool = True Then
-
-        '    ElseIf fifteenDegreeBool = True Then
-
-        '    ElseIf twentyFiveDegreeBool = True Then
-
-        '    ElseIf fourtyFiveDegreeBool = True Then
-
-        '    End If
-
-        '    directLeftBytes1617()
-        'ElseIf stabalizeModeBool = True Then
-        '    stabalizeBytes10()If pointTwoDegreeBool = True Then
-
-        'ElseIf oneDegreeBool = True Then
-
-        'ElseIf fiveDegreeBool = True Then
-
-        'ElseIf fifteenDegreeBool = True Then
-
-        'ElseIf twentyFiveDegreeBool = True Then
-
-        'ElseIf fourtyFiveDegreeBool = True Then
-
-        'End If
-
-        'stabalizeLeftBytes1617()
-        'End If
-
-        'controlGimbalBytes11()
-        'LeftBytes1213()
-        'LeftRightBytes1415()
-
-        'SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub rightButton_Click(sender As Object, e As EventArgs) Handles rightButton.Click
+        upButtonBool = False
+        leftButtonBool = False
+        downButtonBool = False
+        rightButtonBool = True
 
+        headerByte(9) = &H47
+        If directModeBool = True Then
+            whichAngleDirectRight()
+            headerByte(10) = &H10
+        ElseIf stabalizeModeBool = True Then
+            whichAngleStabalizeRight()
+            headerByte(10) = &H20
+        End If
+        headerByte(11) = &H0
 
-        'controlGimbalByte9()
+        headerByte(14) = &H0
+        headerByte(15) = &H80
 
-        'If directModeBool = True Then
-        '    directBytes10()
-        '    If pointTwoDegreeBool = True Then
-
-        '    ElseIf oneDegreeBool = True Then
-
-        '    ElseIf fiveDegreeBool = True Then
-
-        '    ElseIf fifteenDegreeBool = True Then
-
-        '    ElseIf twentyFiveDegreeBool = True Then
-
-        '    ElseIf fourtyFiveDegreeBool = True Then
-
-        '    End If
-        '    RightBytes1213
-        '    directRightBytes1617()
-        'ElseIf stabalizeModeBool = True Then
-        '    stabalizeBytes10()
-        '    If pointTwoDegreeBool = True Then
-
-        '    ElseIf oneDegreeBool = True Then
-
-        '    ElseIf fiveDegreeBool = True Then
-
-        '    ElseIf fifteenDegreeBool = True Then
-
-        '    ElseIf twentyFiveDegreeBool = True Then
-
-        '    ElseIf fourtyFiveDegreeBool = True Then
-
-        '    End If
-        '    RightBytes1213
-        '    stabalizeRightBytes1617()
-        'End If
-
-        'LeftRightBytes1415()
-
-        'controlGimbalBytes11()
-
-
-        'SerialPort1.Write(headerByte, 0, 18)
+        SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub upButton_Click(sender As Object, e As EventArgs) Handles upButton.Click
+        upButtonBool = True
+        leftButtonBool = False
+        downButtonBool = False
+        rightButtonBool = False
+
+        headerByte(9) = &H47
+
+        If directModeBool = True Then
+            whichAngleDirectUp()
+            headerByte(10) = &H10
+        ElseIf stabalizeModeBool = True Then
+            whichAngleStabalizeUp()
+            headerByte(10) = &H20
+        End If
+
+        headerByte(11) = &H0
+        headerByte(12) = &H0
+        headerByte(13) = &H80
+
+
 
 
         'controlGimbalByte9()
@@ -407,54 +376,29 @@ Public Class IRForm
         'upBytes1415()
 
 
-        'SerialPort1.Write(headerByte, 0, 18)
+        SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub downButton_Click(sender As Object, e As EventArgs) Handles downButton.Click
+        upButtonBool = False
+        leftButtonBool = False
+        downButtonBool = True
+        rightButtonBool = False
 
+        headerByte(9) = &H47
 
-        'controlGimbalByte9()
+        If directModeBool = True Then
+            whichAngleDirectDown()
+            headerByte(10) = &H10
+        ElseIf stabalizeModeBool = True Then
+            whichAngleStabalizeDown()
+            headerByte(10) = &H20
+        End If
 
-        'If directModeBool = True Then
-        '    directBytes10()
-        '    If pointTwoDegreeBool = True Then
+        headerByte(11) = &H0
+        headerByte(12) = &H0
+        headerByte(13) = &H80
 
-        '    ElseIf oneDegreeBool = True Then
-
-        '    ElseIf fiveDegreeBool = True Then
-
-        '    ElseIf fifteenDegreeBool = True Then
-
-        '    ElseIf twentyFiveDegreeBool = True Then
-
-        '    ElseIf fourtyFiveDegreeBool = True Then
-
-        '    End If
-        'directDownBytes16()
-        '    directUpDownBytes17()
-        'ElseIf stabalizeModeBool = True Then
-        '    stabalizeBytes10()
-        '    If pointTwoDegreeBool = True Then
-
-        '    ElseIf oneDegreeBool = True Then
-
-        '    ElseIf fiveDegreeBool = True Then
-
-        '    ElseIf fifteenDegreeBool = True Then
-
-        '    ElseIf twentyFiveDegreeBool = True Then
-
-        '    ElseIf fourtyFiveDegreeBool = True Then
-
-        '    End If
-        '    stabalizeDownBytes16()
-        '    stabalizeUpDownBytes17()
-        'End If
-
-        'controlGimbalBytes11()
-        'upDownBytes1213()
-        'downBytes1415()
-
-        'SerialPort1.Write(headerByte, 0, 18)
+        SerialPort1.Write(headerByte, 0, 18)
     End Sub
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
@@ -531,19 +475,6 @@ Public Class IRForm
         stabalizeModeBool = True
     End Sub
 
-    Private Sub controlGimbalByte9()
-        headerByte(9) = &H47
-    End Sub
-    Private Sub directBytes10()
-        headerByte(10) = &H10
-    End Sub
-    Private Sub stabalizeBytes10()
-        headerByte(10) = &H20
-    End Sub
-    Private Sub controlGimbalBytes11()
-        headerByte(11) = &H0
-    End Sub
-
     Private Sub pointTwoDegreeMode()
         pointTwoDegreeBool = True
         oneDegreeBool = False
@@ -597,7 +528,20 @@ Public Class IRForm
         twentyFiveDegreeBool = False
         fourtyFiveDegreeBool = True
     End Sub
+    'Private Sub controlGimbalByte9And11()
+    '    headerByte(9) = &H47
+    '    headerByte(11) = &H0
+    'End Sub
 
+    'Private Sub directBytes10()
+    '    headerByte(10) = &H10
+    'End Sub
+    'Private Sub stabalizeBytes10()
+    '    headerByte(10) = &H20
+    'End Sub
+    'Private Sub controlGimbalBytes11()
+    '    headerByte(11) = &H0
+    'End Sub
     'Private Sub LeftFiveDegBytes1213()
     '    headerByte(12) = &H97
     '    headerByte(13) = &H7C
@@ -659,192 +603,306 @@ Public Class IRForm
     '    headerByte(17) = &H7C
     'End Sub
 
+    'Private Sub whichModeByte10()
+    '    If directModeBool = True Then
+    '        headerByte(10) = &H10
+    '    ElseIf stabalizeModeBool = True Then
+    '        headerByte(10) = &H20
+    '    End If
+    'End Sub
 
-    Private Sub whichButton()
-        If 
-    End Sub
-    Private Sub whichModeUp()
+    'Private Sub whichModeUp()
+    'If directModeBool = True Then
+    '    whichAngleDirectUp()
 
-    End Sub
-    Private Sub whichModeLeft()
-
-    End Sub
-    Private Sub whichModeDown()
-
-    End Sub
-    Private Sub whichModeRight()
-
-    End Sub
+    'ElseIf stabalizeModeBool = True Then
+    '    whichAngleStabalizeUp()
+    'End If
+    'End Sub
+    'Private Sub whichModeLeft()
+    '    If directModeBool = True Then
+    '        whichAngleDirectLeft()
+    '    ElseIf stabalizeModeBool = True Then
+    '        whichAngleStabalizeLeft()
+    '    End If
+    'End Sub
+    'Private Sub whichModeDown()
+    '    If directModeBool = True Then
+    '        whichAngleDirectDown()
+    '    ElseIf stabalizeModeBool = True Then
+    '        whichAngleStabalizeDown()
+    '    End If
+    'End Sub
+    'Private Sub whichModeRight()
+    '    If directModeBool = True Then
+    '        whichAngleDirectRight()
+    '    ElseIf stabalizeModeBool = True Then
+    '        whichAngleStabalizeRight()
+    '    End If
+    'End Sub
     Private Sub whichAngleDirectUp()
-
+        If pointTwoDegreeBool = True Then
+            headerByte(14) = &HDD
+            headerByte(15) = &H7F
+            headerByte(16) = &H7B
+            headerByte(17) = &HE
+        ElseIf oneDegreeBool = True Then
+            headerByte(14) = &H51
+            headerByte(15) = &H7F
+            headerByte(16) = &HBB
+            headerByte(17) = &H6A
+        ElseIf fiveDegreeBool = True Then
+            headerByte(14) = &H97
+            headerByte(15) = &H7C
+            headerByte(16) = &H1A
+            headerByte(17) = &H79
+        ElseIf fifteenDegreeBool = True Then
+            headerByte(14) = &HC6
+            headerByte(15) = &H75
+            headerByte(16) = &H8C
+            headerByte(17) = &H84
+        ElseIf twentyFiveDegreeBool = True Then
+            headerByte(14) = &HF5
+            headerByte(15) = &H6E
+            headerByte(16) = &H77
+            headerByte(17) = &HD0
+        ElseIf fourtyFiveDegreeBool = True Then
+            headerByte(14) = &H52
+            headerByte(15) = &H61
+            headerByte(16) = &H43
+            headerByte(17) = &HEA
+        End If
     End Sub
     Private Sub whichAngleDirectLeft()
-
+        If pointTwoDegreeBool = True Then
+            headerByte(12) = &HDD
+            headerByte(13) = &H7F
+            headerByte(16) = &H37
+            headerByte(17) = &H1D
+        ElseIf oneDegreeBool = True Then
+            headerByte(12) = &H51
+            headerByte(13) = &H7F
+            headerByte(16) = &HA7
+            headerByte(17) = &H37
+        ElseIf fiveDegreeBool = True Then
+            headerByte(12) = &H97
+            headerByte(13) = &H7C
+            headerByte(16) = &H2F
+            headerByte(17) = &HFB
+        ElseIf fifteenDegreeBool = True Then
+            headerByte(12) = &HC6
+            headerByte(13) = &H75
+            headerByte(16) = &HD1
+            headerByte(17) = &H3B
+        ElseIf twentyFiveDegreeBool = True Then
+            headerByte(12) = &HF5
+            headerByte(13) = &H6E
+            headerByte(16) = &H92
+            headerByte(17) = &H44
+        ElseIf fourtyFiveDegreeBool = True Then
+            headerByte(12) = &H52
+            headerByte(13) = &H61
+            headerByte(16) = &HE5
+            headerByte(17) = &H57
+        End If
     End Sub
     Private Sub whichAngleDirectDown()
-
+        If pointTwoDegreeBool = True Then
+            headerByte(14) = &H23
+            headerByte(15) = &H80
+            headerByte(16) = &H5B
+            headerByte(17) = &HE
+        ElseIf oneDegreeBool = True Then
+            headerByte(14) = &HAF
+            headerByte(15) = &H80
+            headerByte(16) = &H9B
+            headerByte(17) = &H6A
+        ElseIf fiveDegreeBool = True Then
+            headerByte(14) = &H69
+            headerByte(15) = &H83
+            headerByte(16) = &H3A
+            headerByte(17) = &H79
+        ElseIf fifteenDegreeBool = True Then
+            headerByte(14) = &H3A
+            headerByte(15) = &H8A
+            headerByte(16) = &HCC
+            headerByte(17) = &H85
+        ElseIf twentyFiveDegreeBool = True Then
+            headerByte(14) = &HB
+            headerByte(15) = &H91
+            headerByte(16) = &HA7
+            headerByte(17) = &HD5
+        ElseIf fourtyFiveDegreeBool = True Then
+            headerByte(14) = &HAE
+            headerByte(15) = &H9E
+            headerByte(16) = &H3
+            headerByte(17) = &HEB
+        End If
     End Sub
     Private Sub whichAngleDirectRight()
-
+        If pointTwoDegreeBool = True Then
+            headerByte(12) = &H23
+            headerByte(13) = &H80
+            headerByte(16) = &HEF
+            headerByte(17) = &H1C
+        ElseIf oneDegreeBool = True Then
+            headerByte(12) = &HAF
+            headerByte(13) = &H80
+            headerByte(16) = &H7F
+            headerByte(17) = &H36
+        ElseIf fiveDegreeBool = True Then
+            headerByte(12) = &H69
+            headerByte(13) = &H83
+            headerByte(16) = &HF7
+            headerByte(17) = &HFA
+        ElseIf fifteenDegreeBool = True Then
+            headerByte(12) = &H3A
+            headerByte(13) = &H8A
+            headerByte(16) = &HB1
+            headerByte(17) = &H3B
+        ElseIf twentyFiveDegreeBool = True Then
+            headerByte(12) = &HB
+            headerByte(13) = &H91
+            headerByte(16) = &HBA
+            headerByte(17) = &H40
+        ElseIf fourtyFiveDegreeBool = True Then
+            headerByte(12) = &HAE
+            headerByte(13) = &H9E
+            headerByte(16) = &H85
+            headerByte(17) = &H57
+        End If
     End Sub
     Private Sub whichAngleStabalizeUp()
-
+        If pointTwoDegreeBool = True Then
+            headerByte(14) = &HDD
+            headerByte(15) = &H7F
+            headerByte(16) = &H8B
+            headerByte(17) = &HB
+        ElseIf oneDegreeBool = True Then
+            headerByte(14) = &H51
+            headerByte(15) = &H7F
+            headerByte(16) = &H4B
+            headerByte(17) = &H6F
+        ElseIf fiveDegreeBool = True Then
+            headerByte(14) = &H97
+            headerByte(15) = &H7C
+            headerByte(16) = &HEA
+            headerByte(17) = &H7C
+        ElseIf fifteenDegreeBool = True Then
+            headerByte(14) = &HC6
+            headerByte(15) = &H75
+            headerByte(16) = &H7C
+            headerByte(17) = &H81
+        ElseIf twentyFiveDegreeBool = True Then
+            headerByte(14) = &HF5
+            headerByte(15) = &H6E
+            headerByte(16) = &H87
+            headerByte(17) = &HD5
+        ElseIf fourtyFiveDegreeBool = True Then
+            headerByte(14) = &H52
+            headerByte(15) = &H61
+            headerByte(16) = &HB3
+            headerByte(17) = &HEF
+        End If
     End Sub
     Private Sub whichAngleStabalizeLeft()
-
+        If pointTwoDegreeBool = True Then
+            headerByte(12) = &HDD
+            headerByte(13) = &H7F
+            headerByte(16) = &HC7
+            headerByte(17) = &H18
+        ElseIf oneDegreeBool = True Then
+            headerByte(12) = &H51
+            headerByte(13) = &H7F
+            headerByte(16) = &H57
+            headerByte(17) = &H32
+        ElseIf fiveDegreeBool = True Then
+            headerByte(12) = &H97
+            headerByte(13) = &H7C
+            headerByte(16) = &HDF
+            headerByte(17) = &HFE
+        ElseIf fifteenDegreeBool = True Then
+            headerByte(12) = &HC6
+            headerByte(13) = &H75
+            headerByte(16) = &H21
+            headerByte(17) = &H3E
+        ElseIf twentyFiveDegreeBool = True Then
+            headerByte(12) = &HF5
+            headerByte(13) = &H6E
+            headerByte(16) = &H62
+            headerByte(17) = &H41
+        ElseIf fourtyFiveDegreeBool = True Then
+            headerByte(12) = &H52
+            headerByte(13) = &H61
+            headerByte(16) = &H15
+            headerByte(17) = &H52
+        End If
     End Sub
     Private Sub whichAngleStabalizeDown()
-
+        If pointTwoDegreeBool = True Then
+            headerByte(14) = &H23
+            headerByte(15) = &H80
+            headerByte(16) = &HAB
+            headerByte(17) = &HB
+        ElseIf oneDegreeBool = True Then
+            headerByte(14) = &HAF
+            headerByte(15) = &H80
+            headerByte(16) = &H6B
+            headerByte(17) = &H6F
+        ElseIf fiveDegreeBool = True Then
+            headerByte(14) = &H69
+            headerByte(15) = &H83
+            headerByte(16) = &HCA
+            headerByte(17) = &H7C
+        ElseIf fifteenDegreeBool = True Then
+            headerByte(14) = &H3A
+            headerByte(15) = &H8A
+            headerByte(16) = &H3C
+            headerByte(17) = &H80
+        ElseIf twentyFiveDegreeBool = True Then
+            headerByte(14) = &HB
+            headerByte(15) = &H91
+            headerByte(16) = &HA7
+            headerByte(17) = &HD5
+        ElseIf fourtyFiveDegreeBool = True Then
+            headerByte(14) = &HAE
+            headerByte(15) = &H9E
+            headerByte(16) = &HF3
+            headerByte(17) = &HEE
+        End If
     End Sub
     Private Sub whichAngleStabalizeRight()
-
-    End Sub
-    Private Sub pointTwoDirectUp()
-
-    End Sub
-
-    Private Sub oneDirectUp()
-
-    End Sub
-    Private Sub fiveDirectUp()
-
-    End Sub
-    Private Sub fifteenirectUp()
-
-    End Sub
-    Private Sub twentyFiveDirectUp()
-
-    End Sub
-    Private Sub fourtyFiveDirectUp()
-
-    End Sub
-    Private Sub pointTwoDirectLeft()
-
-    End Sub
-    Private Sub oneDirectLeft()
-
-    End Sub
-    Private Sub fiveDirectLeft()
-
-    End Sub
-    Private Sub fifteenirectLeft()
-
-    End Sub
-    Private Sub twentyFiveDirectLeft()
-
-    End Sub
-    Private Sub fourtyFiveDirectLeft()
-
-    End Sub
-    Private Sub pointTwoDirectDown()
-
-    End Sub
-    Private Sub oneDirectDown()
-
-    End Sub
-    Private Sub fiveDirectDown()
-
-    End Sub
-    Private Sub fifteenirectDown()
-
-    End Sub
-    Private Sub twentyFiveDirectDown()
-
-    End Sub
-    Private Sub fourtyFiveDirectDown()
-
-    End Sub
-    Private Sub pointTwoDirectRight()
-
+        If pointTwoDegreeBool = True Then
+            headerByte(12) = &H23
+            headerByte(13) = &H80
+            headerByte(16) = &H1F
+            headerByte(17) = &H19
+        ElseIf oneDegreeBool = True Then
+            headerByte(12) = &HAF
+            headerByte(13) = &H80
+            headerByte(16) = &H8F
+            headerByte(17) = &H33
+        ElseIf fiveDegreeBool = True Then
+            headerByte(12) = &H69
+            headerByte(13) = &H83
+            headerByte(16) = &H7
+            headerByte(17) = &HFF
+        ElseIf fifteenDegreeBool = True Then
+            headerByte(12) = &H3A
+            headerByte(13) = &H8A
+            headerByte(16) = &H41
+            headerByte(17) = &H3E
+        ElseIf twentyFiveDegreeBool = True Then
+            headerByte(12) = &HB
+            headerByte(13) = &H91
+            headerByte(16) = &HBA
+            headerByte(17) = &H40
+        ElseIf fourtyFiveDegreeBool = True Then
+            headerByte(12) = &HAE
+            headerByte(13) = &H9E
+            headerByte(16) = &H75
+            headerByte(17) = &H52
+        End If
     End Sub
 
-    Private Sub oneDirectRight()
-
-    End Sub
-    Private Sub fiveDirectRight()
-
-    End Sub
-    Private Sub fifteenirectRight()
-
-    End Sub
-    Private Sub twentyFiveDirectRight()
-
-    End Sub
-    Private Sub fourtyFiveDirectRight()
-
-    End Sub
-    Private Sub pointTwoStabilizeUp()
-
-    End Sub
-
-    Private Sub oneStabilizeUp()
-
-    End Sub
-    Private Sub fiveStabilizeUp()
-
-    End Sub
-    Private Sub fifteenStabilizeUp()
-
-    End Sub
-    Private Sub twentyFiveStabilizeUp()
-
-    End Sub
-    Private Sub fourtyFiveStabilizeUp()
-
-    End Sub
-    Private Sub pointTwoStabilizeLeft()
-
-    End Sub
-    Private Sub oneStabilizeLeft()
-
-    End Sub
-    Private Sub fiveStabilizeLeft()
-
-    End Sub
-    Private Sub fifteenStabilizeLeft()
-
-    End Sub
-    Private Sub twentyFiveStabilizeLeft()
-
-    End Sub
-    Private Sub fourtyFiveStabilizeLeft()
-
-    End Sub
-    Private Sub pointTwoStabilizeDown()
-
-    End Sub
-    Private Sub oneStabilizeDown()
-
-    End Sub
-    Private Sub fiveStabilizeDown()
-
-    End Sub
-    Private Sub fifteenStabilizeDown()
-
-    End Sub
-    Private Sub twentyFiveStabilizeDown()
-
-    End Sub
-    Private Sub fourtyFiveStabilizeDown()
-
-    End Sub
-    Private Sub pointTwoStabilizeRight()
-
-    End Sub
-
-    Private Sub oneStabilizeRight()
-
-    End Sub
-    Private Sub fiveStabilizeRight()
-
-    End Sub
-    Private Sub fifteenStabilizeRight()
-
-    End Sub
-    Private Sub twentyFiveStabilizeRight()
-
-    End Sub
-    Private Sub fourtyFiveStabilizeRight()
-
-    End Sub
 End Class

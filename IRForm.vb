@@ -51,10 +51,6 @@ Public Class IRForm
         headerByte(16) = &H0
         headerByte(17) = &H0
 
-        'For row As Integer = 0 To 8
-        '    ListBox1.Items.Add(Hex(headerByte(row)))
-        'Next
-
     End Sub
 
     Private Sub GimbalButton1_Click(sender As Object, e As EventArgs) Handles GimbalButton1.Click, HomeButton.Click
@@ -289,13 +285,11 @@ Public Class IRForm
         offModeBool = False
         directModeBool = True
         stabalizeModeBool = False
-        'headerByte(10) = &H10
     End Sub
     Private Sub stabalizeModeEnabled()
         offModeBool = False
         directModeBool = False
         stabalizeModeBool = True
-        'headerByte(10) = &H20
     End Sub
     Private Sub leftButton_Click(sender As Object, e As EventArgs) Handles leftButton.Click
         controlGimbalByte9()
@@ -456,22 +450,6 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
-
-
-
-
-    'headerByte(9) = &H5A
-    'headerByte(10) = &H0
-    'headerByte(11) = &H0
-    'headerByte(12) = &H0
-    'headerByte(13) = &H0
-    'headerByte(14) = &H0
-    'headerByte(15) = &H0
-    'headerByte(16) = &HB2
-    'headerByte(17) = &HD8
-
-    'SerialPort1.Write(headerByte, 0, 18)
-    'End Sub
 
     Private Sub ZoomInButton_Click(sender As Object, e As EventArgs) Handles ZoomInButton.Click, ZoomOutButton.Click
 

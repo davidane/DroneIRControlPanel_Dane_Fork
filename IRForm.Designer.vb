@@ -54,6 +54,12 @@ Partial Class IRForm
         Me.fourtyFiveDegreesRadioButton = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.modeSelectGroupBox = New System.Windows.Forms.GroupBox()
+        Me.IRCameraRadioButton = New System.Windows.Forms.RadioButton()
+        Me.SonyRadioButton = New System.Windows.Forms.RadioButton()
+        Me.CameraSelectGroupBox = New System.Windows.Forms.GroupBox()
+        Me.modeSelectGroupBox.SuspendLayout()
+        Me.CameraSelectGroupBox.SuspendLayout()
         Me.SuspendLayout()
         '
         'GimbalButton1
@@ -140,7 +146,7 @@ Partial Class IRForm
         'offModeRadioButton
         '
         Me.offModeRadioButton.AutoSize = True
-        Me.offModeRadioButton.Location = New System.Drawing.Point(9, 19)
+        Me.offModeRadioButton.Location = New System.Drawing.Point(6, 21)
         Me.offModeRadioButton.Name = "offModeRadioButton"
         Me.offModeRadioButton.Size = New System.Drawing.Size(39, 17)
         Me.offModeRadioButton.TabIndex = 12
@@ -151,7 +157,7 @@ Partial Class IRForm
         'directModeRadioButton
         '
         Me.directModeRadioButton.AutoSize = True
-        Me.directModeRadioButton.Location = New System.Drawing.Point(9, 42)
+        Me.directModeRadioButton.Location = New System.Drawing.Point(6, 44)
         Me.directModeRadioButton.Name = "directModeRadioButton"
         Me.directModeRadioButton.Size = New System.Drawing.Size(53, 17)
         Me.directModeRadioButton.TabIndex = 13
@@ -162,7 +168,7 @@ Partial Class IRForm
         'stabilizeModeRadioButton
         '
         Me.stabilizeModeRadioButton.AutoSize = True
-        Me.stabilizeModeRadioButton.Location = New System.Drawing.Point(9, 65)
+        Me.stabilizeModeRadioButton.Location = New System.Drawing.Point(6, 67)
         Me.stabilizeModeRadioButton.Name = "stabilizeModeRadioButton"
         Me.stabilizeModeRadioButton.Size = New System.Drawing.Size(64, 17)
         Me.stabilizeModeRadioButton.TabIndex = 14
@@ -244,7 +250,7 @@ Partial Class IRForm
         '
         'ZoomOutButton
         '
-        Me.ZoomOutButton.Location = New System.Drawing.Point(12, 257)
+        Me.ZoomOutButton.Location = New System.Drawing.Point(12, 196)
         Me.ZoomOutButton.Name = "ZoomOutButton"
         Me.ZoomOutButton.Size = New System.Drawing.Size(75, 23)
         Me.ZoomOutButton.TabIndex = 23
@@ -333,14 +339,58 @@ Partial Class IRForm
         Me.TextBox1.Size = New System.Drawing.Size(100, 20)
         Me.TextBox1.TabIndex = 30
         '
+        'modeSelectGroupBox
+        '
+        Me.modeSelectGroupBox.Controls.Add(Me.directModeRadioButton)
+        Me.modeSelectGroupBox.Controls.Add(Me.stabilizeModeRadioButton)
+        Me.modeSelectGroupBox.Controls.Add(Me.offModeRadioButton)
+        Me.modeSelectGroupBox.Location = New System.Drawing.Point(131, 327)
+        Me.modeSelectGroupBox.Name = "modeSelectGroupBox"
+        Me.modeSelectGroupBox.Size = New System.Drawing.Size(98, 101)
+        Me.modeSelectGroupBox.TabIndex = 31
+        Me.modeSelectGroupBox.TabStop = False
+        Me.modeSelectGroupBox.Text = "Mode Select"
+        '
+        'IRCameraRadioButton
+        '
+        Me.IRCameraRadioButton.AutoSize = True
+        Me.IRCameraRadioButton.Location = New System.Drawing.Point(6, 31)
+        Me.IRCameraRadioButton.Name = "IRCameraRadioButton"
+        Me.IRCameraRadioButton.Size = New System.Drawing.Size(75, 17)
+        Me.IRCameraRadioButton.TabIndex = 32
+        Me.IRCameraRadioButton.TabStop = True
+        Me.IRCameraRadioButton.Text = "IR Camera"
+        Me.IRCameraRadioButton.UseVisualStyleBackColor = True
+        '
+        'SonyRadioButton
+        '
+        Me.SonyRadioButton.AutoSize = True
+        Me.SonyRadioButton.Location = New System.Drawing.Point(6, 55)
+        Me.SonyRadioButton.Name = "SonyRadioButton"
+        Me.SonyRadioButton.Size = New System.Drawing.Size(49, 17)
+        Me.SonyRadioButton.TabIndex = 33
+        Me.SonyRadioButton.TabStop = True
+        Me.SonyRadioButton.Text = "Sony"
+        Me.SonyRadioButton.UseVisualStyleBackColor = True
+        '
+        'CameraSelectGroupBox
+        '
+        Me.CameraSelectGroupBox.Controls.Add(Me.IRCameraRadioButton)
+        Me.CameraSelectGroupBox.Controls.Add(Me.SonyRadioButton)
+        Me.CameraSelectGroupBox.Location = New System.Drawing.Point(13, 327)
+        Me.CameraSelectGroupBox.Name = "CameraSelectGroupBox"
+        Me.CameraSelectGroupBox.Size = New System.Drawing.Size(101, 84)
+        Me.CameraSelectGroupBox.TabIndex = 34
+        Me.CameraSelectGroupBox.TabStop = False
+        Me.CameraSelectGroupBox.Text = "Camera Select"
+        '
         'IRForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-
-        Me.ClientSize = New System.Drawing.Size(570, 290)
-
         Me.ClientSize = New System.Drawing.Size(831, 471)
+        Me.Controls.Add(Me.CameraSelectGroupBox)
+        Me.Controls.Add(Me.modeSelectGroupBox)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ZoomOutButton)
@@ -358,9 +408,6 @@ Partial Class IRForm
         Me.Controls.Add(Me.rightButton)
         Me.Controls.Add(Me.leftButton)
         Me.Controls.Add(Me.upButton)
-        Me.Controls.Add(Me.stabilizeModeRadioButton)
-        Me.Controls.Add(Me.directModeRadioButton)
-        Me.Controls.Add(Me.offModeRadioButton)
         Me.Controls.Add(Me.ResetButton)
         Me.Controls.Add(Me.FFCButton)
         Me.Controls.Add(Me.VideoOffButton)
@@ -372,6 +419,10 @@ Partial Class IRForm
         Me.Controls.Add(Me.GimbalButton1)
         Me.Name = "IRForm"
         Me.Text = "IR Control Form"
+        Me.modeSelectGroupBox.ResumeLayout(False)
+        Me.modeSelectGroupBox.PerformLayout()
+        Me.CameraSelectGroupBox.ResumeLayout(False)
+        Me.CameraSelectGroupBox.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -413,4 +464,8 @@ Partial Class IRForm
     Friend WithEvents fourtyFiveDegreesRadioButton As RadioButton
     Friend WithEvents Label1 As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents modeSelectGroupBox As GroupBox
+    Friend WithEvents IRCameraRadioButton As RadioButton
+    Friend WithEvents SonyRadioButton As RadioButton
+    Friend WithEvents CameraSelectGroupBox As GroupBox
 End Class

@@ -43,8 +43,6 @@ Partial Class IRForm
         Me.downButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.ZoomInButton = New System.Windows.Forms.Button()
-        Me.carsonButton = New System.Windows.Forms.Button()
-        Me.daneButton = New System.Windows.Forms.Button()
         Me.ZoomOutButton = New System.Windows.Forms.Button()
         Me.pointTwoDegreeRadioButton = New System.Windows.Forms.RadioButton()
         Me.oneDegreeRadioButton = New System.Windows.Forms.RadioButton()
@@ -52,8 +50,6 @@ Partial Class IRForm
         Me.fifteenDegreesRadioButton = New System.Windows.Forms.RadioButton()
         Me.twentyFiveDegreesRadioButton = New System.Windows.Forms.RadioButton()
         Me.fourtyFiveDegreesRadioButton = New System.Windows.Forms.RadioButton()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'GimbalButton1
@@ -224,24 +220,6 @@ Partial Class IRForm
         Me.ZoomInButton.Text = "Zoom In"
         Me.ZoomInButton.UseVisualStyleBackColor = True
         '
-        'carsonButton
-        '
-        Me.carsonButton.Location = New System.Drawing.Point(345, 212)
-        Me.carsonButton.Name = "carsonButton"
-        Me.carsonButton.Size = New System.Drawing.Size(75, 23)
-        Me.carsonButton.TabIndex = 22
-        Me.carsonButton.Text = "Carson's"
-        Me.carsonButton.UseVisualStyleBackColor = True
-        '
-        'daneButton
-        '
-        Me.daneButton.Location = New System.Drawing.Point(264, 211)
-        Me.daneButton.Name = "daneButton"
-        Me.daneButton.Size = New System.Drawing.Size(75, 23)
-        Me.daneButton.TabIndex = 22
-        Me.daneButton.Text = "Dane's Button"
-        Me.daneButton.UseVisualStyleBackColor = True
-        '
         'ZoomOutButton
         '
         Me.ZoomOutButton.Location = New System.Drawing.Point(12, 257)
@@ -317,32 +295,11 @@ Partial Class IRForm
         Me.fourtyFiveDegreesRadioButton.Text = "45 degrees"
         Me.fourtyFiveDegreesRadioButton.UseVisualStyleBackColor = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(320, 302)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(39, 13)
-        Me.Label1.TabIndex = 29
-        Me.Label1.Text = "Label1"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(307, 238)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 30
-        '
         'IRForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-
-        Me.ClientSize = New System.Drawing.Size(570, 290)
-
         Me.ClientSize = New System.Drawing.Size(831, 471)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ZoomOutButton)
         Me.Controls.Add(Me.ZoomInButton)
         Me.Controls.Add(Me.fourtyFiveDegreesRadioButton)
@@ -351,8 +308,6 @@ Partial Class IRForm
         Me.Controls.Add(Me.fiveDegreesRadioButton)
         Me.Controls.Add(Me.oneDegreeRadioButton)
         Me.Controls.Add(Me.pointTwoDegreeRadioButton)
-        Me.Controls.Add(Me.carsonButton)
-        Me.Controls.Add(Me.daneButton)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.downButton)
         Me.Controls.Add(Me.rightButton)
@@ -398,10 +353,6 @@ Partial Class IRForm
     Friend WithEvents ZoomInButton As Button
 
 
-    Friend WithEvents carsonButton As Button
-
-    Friend WithEvents daneButton As Button
-
 
     Friend WithEvents ZoomOutButton As Button
 
@@ -411,6 +362,4 @@ Partial Class IRForm
     Friend WithEvents fifteenDegreesRadioButton As RadioButton
     Friend WithEvents twentyFiveDegreesRadioButton As RadioButton
     Friend WithEvents fourtyFiveDegreesRadioButton As RadioButton
-    Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox1 As TextBox
 End Class

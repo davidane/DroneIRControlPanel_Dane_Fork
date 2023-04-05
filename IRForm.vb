@@ -15,19 +15,9 @@ Public Class IRForm
         SerialPort1.Open() 'intialize and open port
         'Timer1.Enabled = True 'enable timer 1 on form
 
-        'SerialPort1.PortName = "COM5" 'name serial port
-        'SerialPort1.BaudRate = 57600  'set baud rate 19.2k
-        'SerialPort1.DataBits = 8 'number of data bits is 8
-        'SerialPort1.StopBits = IO.Ports.StopBits.One 'one stop bit
-        'SerialPort1.Parity = IO.Ports.Parity.None 'no parity bits
-        'SerialPort1.Open() 'intialize and open port
-        ''Timer1.Enabled = True 'enable timer 1 on form
-
-
         offModeRadioButton.Checked = True
         directModeRadioButton.Checked = False
         stabilizeModeRadioButton.Checked = False
-
 
         pointTwoDegreeBool = False
         oneDegreeBool = False
@@ -35,7 +25,6 @@ Public Class IRForm
         fifteenDegreeBool = False
         twentyFiveDegreeBool = False
         fourtyFiveDegreeBool = False
-
 
         directionalButtonsOff()
 
@@ -446,7 +435,7 @@ Public Class IRForm
         Me.Text = e.KeyCode.ToString
     End Sub
 
-    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
+    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) 
         If e.KeyCode = Keys.Enter Then
             MsgBox("enter key pressd ")
         End If
@@ -505,118 +494,6 @@ Private Sub oneDegreeMode()
         twentyFiveDegreeBool = False
         fourtyFiveDegreeBool = True
     End Sub
-    'Private Sub controlGimbalByte9And11()
-    '    headerByte(9) = &H47
-    '    headerByte(11) = &H0
-    'End Sub
-
-    'Private Sub directBytes10()
-    '    headerByte(10) = &H10
-    'End Sub
-    'Private Sub stabalizeBytes10()
-    '    headerByte(10) = &H20
-    'End Sub
-    'Private Sub controlGimbalBytes11()
-    '    headerByte(11) = &H0
-    'End Sub
-    'Private Sub LeftFiveDegBytes1213()
-    '    headerByte(12) = &H97
-    '    headerByte(13) = &H7C
-    'End Sub
-    'Private Sub RightFiveDegBytes1213()
-    '    headerByte(12) = &H69
-    '    headerByte(13) = &H83
-    'End Sub
-    'Private Sub LeftRightBytes1415()
-    '    headerByte(14) = &H0
-    '    headerByte(15) = &H80
-    'End Sub
-    'Private Sub directLeftFiveDegBytes1617()
-    '    headerByte(16) = &H2F
-    '    headerByte(17) = &HFB
-    'End Sub
-    'Private Sub stabalizeLeftFiveDegBytes1617()
-    '    headerByte(16) = &HDF
-    '    headerByte(17) = &HFE
-    'End Sub
-    'Private Sub directRightFiveDegBytes1617()
-    '    headerByte(16) = &HF7
-    '    headerByte(17) = &HFA
-    'End Sub
-    'Private Sub stabalizeRightFiveDegBytes1617()
-    '    headerByte(16) = &H7
-    '    headerByte(17) = &HFF
-    'End Sub
-    'Private Sub upDownBytes1213()
-    '    headerByte(12) = &H0
-    '    headerByte(13) = &H80
-    'End Sub
-    'Private Sub upBytes1415()
-    '    headerByte(14) = &H97
-    '    headerByte(15) = &H7C
-    'End Sub
-    'Private Sub directUpBytes16()
-    '    headerByte(16) = &H1A
-    'End Sub
-    'Private Sub stabalizeUpBytes16()
-    '    headerByte(16) = &HEA
-    'End Sub
-    'Private Sub downBytes1415()
-    '    headerByte(14) = &H69
-    '    headerByte(15) = &H83
-    'End Sub
-    'Private Sub directDownBytes16()
-    '    headerByte(16) = &H3A
-    'End Sub
-
-    'Private Sub stabalizeDownBytes16()
-    '    headerByte(16) = &HCA
-    'End Sub
-    'Private Sub directUpDownBytes17()
-    '    headerByte(17) = &H79
-    'End Sub
-
-    'Private Sub stabalizeUpDownBytes17()
-    '    headerByte(17) = &H7C
-    'End Sub
-
-    'Private Sub whichModeByte10()
-    '    If directModeBool = True Then
-    '        headerByte(10) = &H10
-    '    ElseIf stabalizeModeBool = True Then
-    '        headerByte(10) = &H20
-    '    End If
-    'End Sub
-
-    'Private Sub whichModeUp()
-    'If directModeBool = True Then
-    '    whichAngleDirectUp()
-
-    'ElseIf stabalizeModeBool = True Then
-    '    whichAngleStabalizeUp()
-    'End If
-    'End Sub
-    'Private Sub whichModeLeft()
-    '    If directModeBool = True Then
-    '        whichAngleDirectLeft()
-    '    ElseIf stabalizeModeBool = True Then
-    '        whichAngleStabalizeLeft()
-    '    End If
-    'End Sub
-    'Private Sub whichModeDown()
-    '    If directModeBool = True Then
-    '        whichAngleDirectDown()
-    '    ElseIf stabalizeModeBool = True Then
-    '        whichAngleStabalizeDown()
-    '    End If
-    'End Sub
-    'Private Sub whichModeRight()
-    '    If directModeBool = True Then
-    '        whichAngleDirectRight()
-    '    ElseIf stabalizeModeBool = True Then
-    '        whichAngleStabalizeRight()
-    '    End If
-    'End Sub
     Private Sub whichAngleDirectUp()
         If pointTwoDegreeBool = True Then
             headerByte(14) = &HDD

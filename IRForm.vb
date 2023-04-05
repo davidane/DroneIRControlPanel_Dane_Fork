@@ -504,6 +504,7 @@ Public Class IRForm
         End If
     End Sub
 
+
     Private Sub pointTwoDegreeMode()
         pointTwoDegreeBool = True
         oneDegreeBool = False

@@ -50,6 +50,7 @@ Partial Class IRForm
         Me.fifteenDegreesRadioButton = New System.Windows.Forms.RadioButton()
         Me.twentyFiveDegreesRadioButton = New System.Windows.Forms.RadioButton()
         Me.fourtyFiveDegreesRadioButton = New System.Windows.Forms.RadioButton()
+
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.modeSelectGroupBox = New System.Windows.Forms.GroupBox()
@@ -303,6 +304,7 @@ Partial Class IRForm
         Me.fourtyFiveDegreesRadioButton.Text = "45 degrees"
         Me.fourtyFiveDegreesRadioButton.UseVisualStyleBackColor = True
         '
+
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -364,15 +366,16 @@ Partial Class IRForm
         Me.CameraSelectGroupBox.TabStop = False
         Me.CameraSelectGroupBox.Text = "Camera Select"
         '
-        'IRForm
-        '
+
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(831, 471)
+
         Me.Controls.Add(Me.CameraSelectGroupBox)
         Me.Controls.Add(Me.modeSelectGroupBox)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label1)
+
         Me.Controls.Add(Me.ZoomOutButton)
         Me.Controls.Add(Me.ZoomInButton)
         Me.Controls.Add(Me.fourtyFiveDegreesRadioButton)

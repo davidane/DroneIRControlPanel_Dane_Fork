@@ -15,19 +15,9 @@ Public Class IRForm
         'SerialPort1.Open() 'intialize and open port
         ''Timer1.Enabled = True 'enable timer 1 on form
 
-        'SerialPort1.PortName = "COM5" 'name serial port
-        'SerialPort1.BaudRate = 57600  'set baud rate 19.2k
-        'SerialPort1.DataBits = 8 'number of data bits is 8
-        'SerialPort1.StopBits = IO.Ports.StopBits.One 'one stop bit
-        'SerialPort1.Parity = IO.Ports.Parity.None 'no parity bits
-        'SerialPort1.Open() 'intialize and open port
-        ''Timer1.Enabled = True 'enable timer 1 on form
-
-
         offModeRadioButton.Checked = True
         directModeRadioButton.Checked = False
         stabilizeModeRadioButton.Checked = False
-
 
         pointTwoDegreeBool = False
         oneDegreeBool = False
@@ -35,7 +25,6 @@ Public Class IRForm
         fifteenDegreeBool = False
         twentyFiveDegreeBool = False
         fourtyFiveDegreeBool = False
-
 
         directionalButtonsOff()
 
@@ -504,16 +493,28 @@ Public Class IRForm
         stabalizeModeBool = True
     End Sub
 
-    Private Sub pointTwoDegreeMode()
-    pointTwoDegreeBool = True
-    oneDegreeBool = False
-    fiveDegreeBool = False
-    fifteenDegreeBool = False
-    twentyFiveDegreeBool = False
-    fourtyFiveDegreeBool = False
-End Sub
 
-Private Sub oneDegreeMode()
+    Private Sub IRForm_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Me.Text = e.KeyCode.ToString
+    End Sub
+
+    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs)
+        If e.KeyCode = Keys.Enter Then
+            MsgBox("enter key pressd ")
+        End If
+    End Sub
+
+
+    Private Sub pointTwoDegreeMode()
+        pointTwoDegreeBool = True
+        oneDegreeBool = False
+        fiveDegreeBool = False
+        fifteenDegreeBool = False
+        twentyFiveDegreeBool = False
+        fourtyFiveDegreeBool = False
+    End Sub
+
+    Private Sub oneDegreeMode()
         pointTwoDegreeBool = False
         oneDegreeBool = True
         fiveDegreeBool = False

@@ -346,11 +346,11 @@ Partial Class IRForm
         Me.CameraSelectGroupBox.TabStop = False
         Me.CameraSelectGroupBox.Text = "Camera Select"
         '
-        'IRForm
-        '
+
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(831, 471)
+
         Me.Controls.Add(Me.CameraSelectGroupBox)
         Me.Controls.Add(Me.modeSelectGroupBox)
         Me.Controls.Add(Me.ZoomOutButton)

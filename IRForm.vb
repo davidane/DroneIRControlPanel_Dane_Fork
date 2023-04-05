@@ -7,13 +7,13 @@ Public Class IRForm
     Dim headerByte(17) As Byte
     Dim directModeBool, stabalizeModeBool, offModeBool, pointTwoDegreeBool, oneDegreeBool, fiveDegreeBool, fifteenDegreeBool, twentyFiveDegreeBool, fourtyFiveDegreeBool, upButtonBool, leftButtonBool, downButtonBool, rightButtonBool As Boolean
     Private Sub IRForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        SerialPort1.PortName = "COM10" 'name serial port
-        SerialPort1.BaudRate = 57600  'set baud rate 19.2k
-        SerialPort1.DataBits = 8 'number of data bits is 8
-        SerialPort1.StopBits = IO.Ports.StopBits.One 'one stop bit
-        SerialPort1.Parity = IO.Ports.Parity.None 'no parity bits
-        SerialPort1.Open() 'intialize and open port
-        'Timer1.Enabled = True 'enable timer 1 on form
+        'SerialPort1.PortName = "COM10" 'name serial port
+        'SerialPort1.BaudRate = 57600  'set baud rate 19.2k
+        'SerialPort1.DataBits = 8 'number of data bits is 8
+        'SerialPort1.StopBits = IO.Ports.StopBits.One 'one stop bit
+        'SerialPort1.Parity = IO.Ports.Parity.None 'no parity bits
+        'SerialPort1.Open() 'intialize and open port
+        ''Timer1.Enabled = True 'enable timer 1 on form
 
         'SerialPort1.PortName = "COM5" 'name serial port
         'SerialPort1.BaudRate = 57600  'set baud rate 19.2k
@@ -60,11 +60,71 @@ Public Class IRForm
         headerByte(16) = &H0
         headerByte(17) = &H0
 
-
-        Me.Focus()
+        If IRCameraRadioButton.Checked = False Or SonyRadioButton.Checked = False Then
+            allButtonsOff()
+        End If
 
     End Sub
-
+    Private Sub allButtonsOff()
+        ZoomInButton.Enabled = False
+        ZoomOutButton.Enabled = False
+        modeSelectGroupBox.Enabled = False
+        pointTwoDegreeRadioButton.Enabled = False
+        oneDegreeRadioButton.Enabled = False
+        fiveDegreesRadioButton.Enabled = False
+        fifteenDegreesRadioButton.Enabled = False
+        twentyFiveDegreesRadioButton.Enabled = False
+        fourtyFiveDegreesRadioButton.Enabled = False
+        GimbalButton1.Enabled = False
+        GimbalButton2.Enabled = False
+        GimbalButton3.Enabled = False
+        GimbalButton4.Enabled = False
+        HomeButton.Enabled = False
+        VideoOffButton.Enabled = False
+        VideoOnButton.Enabled = False
+        FFCButton.Enabled = False
+        ResetButton.Enabled = False
+    End Sub
+    Private Sub IRCameraRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles IRCameraRadioButton.CheckedChanged
+        ZoomInButton.Enabled = True
+        ZoomOutButton.Enabled = True
+        modeSelectGroupBox.Enabled = True
+        pointTwoDegreeRadioButton.Enabled = True
+        oneDegreeRadioButton.Enabled = True
+        fiveDegreesRadioButton.Enabled = True
+        fifteenDegreesRadioButton.Enabled = True
+        twentyFiveDegreesRadioButton.Enabled = True
+        fourtyFiveDegreesRadioButton.Enabled = True
+        GimbalButton1.Enabled = True
+        GimbalButton2.Enabled = True
+        GimbalButton3.Enabled = True
+        GimbalButton4.Enabled = True
+        HomeButton.Enabled = True
+        VideoOffButton.Enabled = True
+        VideoOnButton.Enabled = True
+        FFCButton.Enabled = True
+        ResetButton.Enabled = True
+    End Sub
+    Private Sub SonyRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SonyRadioButton.CheckedChanged
+        ZoomInButton.Enabled = True
+        ZoomOutButton.Enabled = True
+        modeSelectGroupBox.Enabled = True
+        pointTwoDegreeRadioButton.Enabled = True
+        oneDegreeRadioButton.Enabled = True
+        fiveDegreesRadioButton.Enabled = True
+        fifteenDegreesRadioButton.Enabled = True
+        twentyFiveDegreesRadioButton.Enabled = True
+        fourtyFiveDegreesRadioButton.Enabled = True
+        GimbalButton1.Enabled = True
+        GimbalButton2.Enabled = True
+        GimbalButton3.Enabled = True
+        GimbalButton4.Enabled = True
+        HomeButton.Enabled = True
+        VideoOffButton.Enabled = True
+        VideoOnButton.Enabled = True
+        FFCButton.Enabled = True
+        ResetButton.Enabled = True
+    End Sub
     Private Sub GimbalButton1_Click(sender As Object, e As EventArgs) Handles GimbalButton1.Click, HomeButton.Click
         headerByte(9) = &H47
         headerByte(10) = &H4A
@@ -118,6 +178,9 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+
+
+
 
     Private Sub VideoOnButton_Click(sender As Object, e As EventArgs) Handles VideoOnButton.Click
         headerByte(9) = &H7C
@@ -439,17 +502,6 @@ Public Class IRForm
         offModeBool = False
         directModeBool = False
         stabalizeModeBool = True
-    End Sub
-
-
-    Private Sub IRForm_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
-        Me.Text = e.KeyCode.ToString
-    End Sub
-
-    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles TextBox1.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            MsgBox("enter key pressd ")
-        End If
     End Sub
 
     Private Sub pointTwoDegreeMode()
@@ -881,5 +933,6 @@ Private Sub oneDegreeMode()
             headerByte(17) = &H52
         End If
     End Sub
+
 
 End Class

@@ -1,3 +1,13 @@
+'Carson Bogart and Dane Davids
+'Drone Camera control 
+'Shane Slack
+'Spring 2023
+
+'This program is used to control the scaneagle drone cameras using a byte array to send
+'commands derived from reading information sent from a already existing test program.
+'Whenever a button is pressed from within the form the byte array is populated with the
+'corresponding command and then sent to a rs-232 to TTL converter then to the camera. 
+
 Option Explicit On
 Option Strict On
 
@@ -7,53 +17,56 @@ Public Class IRForm
     Dim headerByte(17) As Byte
     Dim directModeBool, stabalizeModeBool, offModeBool, pointTwoDegreeBool, oneDegreeBool, fiveDegreeBool, fifteenDegreeBool, twentyFiveDegreeBool, fourtyFiveDegreeBool, upButtonBool, leftButtonBool, downButtonBool, rightButtonBool As Boolean
     Private Sub IRForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'SerialPort1.PortName = "COM10" 'name serial port
-        'SerialPort1.BaudRate = 57600  'set baud rate 19.2k
-        'SerialPort1.DataBits = 8 'number of data bits is 8
-        'SerialPort1.StopBits = IO.Ports.StopBits.One 'one stop bit
-        'SerialPort1.Parity = IO.Ports.Parity.None 'no parity bits
-        'SerialPort1.Open() 'intialize and open port
-        ''Timer1.Enabled = True 'enable timer 1 on form
 
-        offModeRadioButton.Checked = True
-        directModeRadioButton.Checked = False
-        stabilizeModeRadioButton.Checked = False
+        'opens the named port at the designated bit rate, Size, And parity
+        SerialPort1.PortName = "COM10" 'name serial port
+        SerialPort1.BaudRate = 57600  'set baud rate 57.6k
+        SerialPort1.DataBits = 8 'number of data bits is 8
+        SerialPort1.StopBits = IO.Ports.StopBits.One 'one stop bit
+        SerialPort1.Parity = IO.Ports.Parity.None 'no parity bits
+        SerialPort1.Open() 'intialize and open port
 
-        pointTwoDegreeBool = False
-        oneDegreeBool = False
-        fiveDegreeBool = True
-        fifteenDegreeBool = False
-        twentyFiveDegreeBool = False
-        fourtyFiveDegreeBool = False
+        'setting default values for the global variables that will be edited throughout the program
+        offModeRadioButton.Checked = True 'deaults the off button as checked which disables controls on the mains form
+        fiveDegreesRadioButton.Checked = True 'defaults the button as checked to make enable the camera to move at 5 degrees per event
+        pointTwoDegreeBool = False            '//
+        oneDegreeBool = False           'defaults the 5 degree mode ON so that the camera will move at this level per event
+        fiveDegreeBool = True           '/////
+        fifteenDegreeBool = False       '////
+        twentyFiveDegreeBool = False    '///
+        fourtyFiveDegreeBool = False    '//
 
-        directionalButtonsOff()
+        directionalButtonsOff() 'calls sub that makes sure that the buttons are disabled on loading of the form
+        offModeEnabled()        'calls the sub that sets the associated variables as false 
+        fiveDegreeMode()        'calls the sub that sets the associated variables so that the program is in 5 degree mode
 
-        offModeEnabled()
+        headerByte(0) = &H55    'filling the array with default values on load -- bytes 8 - 17 are altered throughout the program so their values are not as necessary but we know what they were being filled with when we loaded the values here
+        headerByte(1) = &HAA    '//////////////////
+        headerByte(2) = &H7     '/////////////////
+        headerByte(3) = &H4D    '////////////////
+        headerByte(4) = &H0     '///////////////
+        headerByte(5) = &H1     '//////////////
+        headerByte(6) = &H0     '/////////////
+        headerByte(7) = &H98    '////////////
+        headerByte(8) = &H0     '///////////
+        headerByte(9) = &H0     '//////////
+        headerByte(10) = &H0    '/////////
+        headerByte(11) = &H0    '////////
+        headerByte(12) = &H0    '///////
+        headerByte(13) = &H0    '//////
+        headerByte(14) = &H0    '/////
+        headerByte(15) = &H0    '////
+        headerByte(16) = &H0    '///
+        headerByte(17) = &H0    '//
 
-        headerByte(0) = &H55
-        headerByte(1) = &HAA
-        headerByte(2) = &H7
-        headerByte(3) = &H4D
-        headerByte(4) = &H0
-        headerByte(5) = &H1
-        headerByte(6) = &H0
-        headerByte(7) = &H98
-        headerByte(8) = &H0
-        headerByte(9) = &H0
-        headerByte(10) = &H0
-        headerByte(11) = &H0
-        headerByte(12) = &H0
-        headerByte(13) = &H0
-        headerByte(14) = &H0
-        headerByte(15) = &H0
-        headerByte(16) = &H0
-        headerByte(17) = &H0
-
+        'vv calls the sub that turns off all of the buttons if neither camera option is selected -- as of 4/27/2023 there is no difference between cameras and their functionality of thhe program so it does not matter which one is selected
         If IRCameraRadioButton.Checked = False Or SonyRadioButton.Checked = False Then
             allButtonsOff()
         End If
+        '^^
 
     End Sub
+    'vv turns the buttons/controls on the form OFF
     Private Sub allButtonsOff()
         ZoomInButton.Enabled = False
         ZoomOutButton.Enabled = False
@@ -74,6 +87,8 @@ Public Class IRForm
         FFCButton.Enabled = False
         ResetButton.Enabled = False
     End Sub
+    '^^
+    'vv turns the buttons/controls on the form ON when the IR Camera is selected
     Private Sub IRCameraRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles IRCameraRadioButton.CheckedChanged
         ZoomInButton.Enabled = True
         ZoomOutButton.Enabled = True
@@ -94,6 +109,8 @@ Public Class IRForm
         FFCButton.Enabled = True
         ResetButton.Enabled = True
     End Sub
+    '^^
+    ''vv turns the buttons/controls on the form ON when the IR Camera is selected 
     Private Sub SonyRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles SonyRadioButton.CheckedChanged
         ZoomInButton.Enabled = True
         ZoomOutButton.Enabled = True
@@ -114,6 +131,8 @@ Public Class IRForm
         FFCButton.Enabled = True
         ResetButton.Enabled = True
     End Sub
+    '^^
+    'vv changes the last 8 bytes of the array and then writes it out to move the camera to the designated position
     Private Sub GimbalButton1_Click(sender As Object, e As EventArgs) Handles GimbalButton1.Click, HomeButton.Click
         headerByte(9) = &H47
         headerByte(10) = &H4A
@@ -127,7 +146,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
-
+    '^^
+    'vv changes the last 8 bytes of the array and then writes it out to move the camera to the designated position
     Private Sub GimablButton2_Click(sender As Object, e As EventArgs) Handles GimbalButton2.Click
         headerByte(9) = &H47
         headerByte(10) = &H4A
@@ -141,6 +161,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+    '^^
+    'vv changes the last 8 bytes of the array and then writes it out to move the camera to the designated position
     Private Sub GimbalButton3_Click(sender As Object, e As EventArgs) Handles GimbalButton3.Click
         headerByte(9) = &H47
         headerByte(10) = &H4A
@@ -154,6 +176,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+    '^^
+    'vv changes the last 8 bytes of the array and then writes it out to move the camera to the designated position
     Private Sub GimbalButton4_Click(sender As Object, e As EventArgs) Handles GimbalButton4.Click
         headerByte(9) = &H47
         headerByte(10) = &H4A
@@ -167,10 +191,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
-
-
-
-
+    '^^
+    'vv changes the last 8 bytes of the array and then writes it out to turn the video from the camera ON
     Private Sub VideoOnButton_Click(sender As Object, e As EventArgs) Handles VideoOnButton.Click
         headerByte(9) = &H7C
         headerByte(10) = &H0
@@ -184,6 +206,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+    '^^
+    'vv changes the last 8 bytes of the array and then writes it out to turn the video from the camera OFF
     Private Sub VideoOffButton_Click(sender As Object, e As EventArgs) Handles VideoOffButton.Click
         headerByte(9) = &H6F
         headerByte(10) = &H0
@@ -197,6 +221,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+    '^^
+    'vv changes the last 8 bytes of the array and then writes it out to adjust the the Flat Fiel (FFC = FLat-Field Correction)
     Private Sub FFCButton_Click(sender As Object, e As EventArgs) Handles FFCButton.Click
         headerByte(9) = &H6D
         headerByte(10) = &H1
@@ -210,6 +236,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+    '^^
+    'vv changes the last 8 bytes of the array and then writes it out to reset the camera position and video signal
     Private Sub ResetButton_Click(sender As Object, e As EventArgs) Handles ResetButton.Click
         headerByte(9) = &H47
         headerByte(10) = &HFE
@@ -223,6 +251,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+    '^^
+    'vv when the off mode radio button changes (from both disabled to enabled and enabled to disabled) this sub checks if it was changed to enabled (true). If the button is enabled the code disables (unchecks) the other buttons to prevent selection of multiple buttons, which would result in trying to run multiple modes, and disables the associated controls 
     Private Sub offModeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles offModeRadioButton.CheckedChanged
         If offModeRadioButton.Checked = True Then
             directModeRadioButton.Checked = False
@@ -236,6 +266,8 @@ Public Class IRForm
         leftButton.Enabled = False
         rightButton.Enabled = False
     End Sub
+    '^^
+    'vv when the direct mode radio button changes (from both disabled to enabled and enabled to disabled) this sub checks if it was changed to enabled (true). If the button is enabled then the code disables (unchecks) the other buttons to prevent selection of multiple buttons, which would result in trying to run multiple modes, and enables the associated controls and modes. 
     Private Sub directModeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles directModeRadioButton.CheckedChanged
         If directModeRadioButton.Checked = True Then
             offModeRadioButton.Checked = False
@@ -246,6 +278,8 @@ Public Class IRForm
 
         directionalButtonsOn()
     End Sub
+    '^^
+    'vv when the stabilize mode radio button changes (from both disabled to enabled and enabled to disabled) this sub checks if it was changed to enabled (true). If the button is enabled then the code disables (unchecks) the other buttons to prevent selection of multiple buttons, which would result in trying to run multiple modes, and enables the associated controls and modes. 
     Private Sub stabilizeModeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles stabilizeModeRadioButton.CheckedChanged
         If stabilizeModeRadioButton.Checked = True Then
             offModeRadioButton.Checked = False
@@ -256,8 +290,8 @@ Public Class IRForm
 
         directionalButtonsOn()
     End Sub
-
-
+    '^^
+    'vv when the point two degree radio button changes (from both disabled to enabled and enabled to disabled) this sub checks if it was changed to enabled (true). If the button is enabled then the code disables (unchecks) the other buttons to prevent selection of multiple buttons, which would result in trying to run multiple modes, and enables the associated controls and modes. 
     Private Sub pointTwoDegreeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles pointTwoDegreeRadioButton.CheckedChanged
         If pointTwoDegreeRadioButton.Checked = True Then
             oneDegreeRadioButton.Checked = False
@@ -269,7 +303,8 @@ Public Class IRForm
             pointTwoDegreeMode()
         End If
     End Sub
-
+    '^
+    'vv when the one degree radio button changes (from both disabled to enabled and enabled to disabled) this sub checks if it was changed to enabled (true). If the button is enabled then the code disables (unchecks) the other buttons to prevent selection of multiple buttons, which would result in trying to run multiple modes, and enables the associated controls and modes.
     Private Sub oneDegreeRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles oneDegreeRadioButton.CheckedChanged
         If oneDegreeRadioButton.Checked = True Then
             pointTwoDegreeRadioButton.Checked = False
@@ -281,7 +316,8 @@ Public Class IRForm
             oneDegreeMode()
         End If
     End Sub
-
+    '^^
+    'vv when the five degree radio button changes (from both disabled to enabled and enabled to disabled) this sub checks if it was changed to enabled (true). If the button is enabled then the code disables (unchecks) the other buttons to prevent selection of multiple buttons, which would result in trying to run multiple modes, and enables the associated controls and modes.
     Private Sub fiveDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles fiveDegreesRadioButton.CheckedChanged
         If fiveDegreesRadioButton.Checked = True Then
             pointTwoDegreeRadioButton.Checked = False
@@ -293,7 +329,8 @@ Public Class IRForm
             fiveDegreeMode()
         End If
     End Sub
-
+    '^
+    'vv when the ^fifteen degree radio button changes (from both disabled to enabled and enabled to disabled) this sub checks if it was changed to enabled (true). If the button is enabled then the code disables (unchecks) the other buttons to prevent selection of multiple buttons, which would result in trying to run multiple modes, and enables the associated controls and modes.
     Private Sub fifteenDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles fifteenDegreesRadioButton.CheckedChanged
         If fifteenDegreesRadioButton.Checked Then
             pointTwoDegreeRadioButton.Checked = False
@@ -305,7 +342,8 @@ Public Class IRForm
             fifteenDegreeMode()
         End If
     End Sub
-
+    '^^
+    'vv when the twenty five degree radio button changes (from both disabled to enabled and enabled to disabled) this sub checks if it was changed to enabled (true). If the button is enabled then the code disables (unchecks) the other buttons to prevent selection of multiple buttons, which would result in trying to run multiple modes, and enables the associated controls and modes.
     Private Sub twentyFiveDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles twentyFiveDegreesRadioButton.CheckedChanged
         If twentyFiveDegreesRadioButton.Checked = True Then
             pointTwoDegreeRadioButton.Checked = False
@@ -317,7 +355,8 @@ Public Class IRForm
             twentyFiveDegreeMode()
         End If
     End Sub
-
+    '^^
+    'vv when the fourty five degree radio button changes (from both disabled to enabled and enabled to disabled) this sub checks if it was changed to enabled (true). If the button is enabled then the code disables (unchecks) the other buttons to prevent selection of multiple buttons, which would result in trying to run multiple modes, and enables the associated controls and modes.
     Private Sub fourtyFiveDegreesRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles fourtyFiveDegreesRadioButton.CheckedChanged
         If fourtyFiveDegreesRadioButton.Checked = True Then
             pointTwoDegreeRadioButton.Checked = False
@@ -329,99 +368,111 @@ Public Class IRForm
             fourtyFiveDegreeMode()
         End If
     End Sub
-
-    Private Sub leftButton_Click(sender As Object, e As EventArgs) Handles leftButton.Click
-        upButtonBool = False
-        leftButtonBool = True
-        downButtonBool = False
-        rightButtonBool = False
-
-        headerByte(9) = &H47
-
-        If directModeBool = True Then
-            whichAngleDirectLeft()
-            headerByte(10) = &H10
-        ElseIf stabalizeModeBool = True Then
-            whichAngleStabalizeLeft()
-            headerByte(10) = &H20
-        End If
-
-        headerByte(11) = &H0
-        headerByte(14) = &H0
-        headerByte(15) = &H80
-
-        SerialPort1.Write(headerByte, 0, 18)
-
-    End Sub
-    Private Sub rightButton_Click(sender As Object, e As EventArgs) Handles rightButton.Click
-        upButtonBool = False
-        leftButtonBool = False
-        downButtonBool = False
-        rightButtonBool = True
-
-        headerByte(9) = &H47
-        If directModeBool = True Then
-            whichAngleDirectRight()
-            headerByte(10) = &H10
-        ElseIf stabalizeModeBool = True Then
-            whichAngleStabalizeRight()
-            headerByte(10) = &H20
-        End If
-        headerByte(11) = &H0
-
-        headerByte(14) = &H0
-        headerByte(15) = &H80
-
-        SerialPort1.Write(headerByte, 0, 18)
-    End Sub
+    '^^
+    'vv up button click does stuff to move the camera up
     Private Sub upButton_Click(sender As Object, e As EventArgs) Handles upButton.Click
-        upButtonBool = True
-        leftButtonBool = False
-        downButtonBool = False
-        rightButtonBool = False
+        upButtonBool = True     'sets a variable as true and then disables the other variables to prevent any unwanted edits from other events
+        leftButtonBool = False  '////
+        downButtonBool = False  '///
+        rightButtonBool = False '//
 
-        headerByte(9) = &H47
+        headerByte(9) = &H47    'edits the byte within the array to communicate it is a pan or tilt control
 
-        If directModeBool = True Then
-            whichAngleDirectUp()
-            headerByte(10) = &H10
-        ElseIf stabalizeModeBool = True Then
-            whichAngleStabalizeUp()
-            headerByte(10) = &H20
-        End If
+        If directModeBool = True Then           'checking which mode the camera is in (direct or stablilizing) and then calling a sub to determine which angle to move the camera for that mode
+            whichAngleDirectUp()                '///////
+            headerByte(10) = &H10               '//////
+        ElseIf stabalizeModeBool = True Then    '/////
+            whichAngleStabalizeUp()             '////
+            headerByte(10) = &H20               '///
+        End If                                  '//
 
-        headerByte(11) = &H0
-        headerByte(12) = &H0
-        headerByte(13) = &H80
+        headerByte(11) = &H0    'filling the bytes within the array because it is an up/down control
+        headerByte(12) = &H0    '///
+        headerByte(13) = &H80   '//
 
-        SerialPort1.Write(headerByte, 0, 18)
+        SerialPort1.Write(headerByte, 0, 18) 'serial writes the command to the camera
     End Sub
+    '^^
+    'vv left button click does stuff to move the camera down
+    Private Sub leftButton_Click(sender As Object, e As EventArgs) Handles leftButton.Click
+        upButtonBool = False    'sets a variable as true and then disables the other variables to prevent any unwanted edits from other events
+        leftButtonBool = True   '////
+        downButtonBool = False  '///
+        rightButtonBool = False '//
+
+        headerByte(9) = &H47    'edits the byte within the array to communicate it is a pan or tilt control
+
+        If directModeBool = True Then           'checking which mode the camera is in (direct or stablilizing) and then calling a sub to determine which angle to move the camera for that mode
+            whichAngleDirectLeft()              '///////
+            headerByte(10) = &H10               '//////
+        ElseIf stabalizeModeBool = True Then    '/////
+            whichAngleStabalizeLeft()           '////
+            headerByte(10) = &H20               '///
+        End If                                  '//
+
+        headerByte(11) = &H0    'filling the bytes within the array because it is an left/right control
+        headerByte(14) = &H0    '///
+        headerByte(15) = &H80   '//
+
+        SerialPort1.Write(headerByte, 0, 18) 'serial writes the command to the camera
+
+    End Sub
+    '^^
+    'vv down button click does stuff to move the camera down
     Private Sub downButton_Click(sender As Object, e As EventArgs) Handles downButton.Click
-        upButtonBool = False
-        leftButtonBool = False
-        downButtonBool = True
-        rightButtonBool = False
+        upButtonBool = False    'sets a variable as true and then disables the other variables to prevent any unwanted edits from other events
+        leftButtonBool = False  '////
+        downButtonBool = True   '///
+        rightButtonBool = False '//
 
-        headerByte(9) = &H47
+        headerByte(9) = &H47    'edits the byte within the array to communicate it is a pan or tilt control
 
-        If directModeBool = True Then
-            whichAngleDirectDown()
-            headerByte(10) = &H10
-        ElseIf stabalizeModeBool = True Then
-            whichAngleStabalizeDown()
-            headerByte(10) = &H20
-        End If
+        If directModeBool = True Then           'checking which mode the camera is in (direct or stablilizing) and then calling a sub to determine which angle to move the camera for that mode
+            whichAngleDirectDown()              '///////
+            headerByte(10) = &H10               '//////
+        ElseIf stabalizeModeBool = True Then    '/////
+            whichAngleStabalizeDown()           '////
+            headerByte(10) = &H20               '///
+        End If                                  ''//
 
-        headerByte(11) = &H0
-        headerByte(12) = &H0
-        headerByte(13) = &H80
+        headerByte(11) = &H0    'filling the bytes within the array because it is an up/down control
+        headerByte(12) = &H0    '///
+        headerByte(13) = &H80   '//
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+    '^^
+    'vv right button click does stuff to move the camera down
+    Private Sub rightButton_Click(sender As Object, e As EventArgs) Handles rightButton.Click
+        upButtonBool = False    'sets a variable as true and then disables the other variables to prevent any unwanted edits from other events
+        leftButtonBool = False  '////
+        downButtonBool = False  '///
+        rightButtonBool = True  '//
+
+        headerByte(9) = &H47    'edits the byte within the array to communicate it is a pan or tilt control
+
+        If directModeBool = True Then           'checking which mode the camera is in (direct or stablilizing) and then calling a sub to determine which angle to move the camera for that mode
+            whichAngleDirectRight()             '///////
+            headerByte(10) = &H10               '//////
+        ElseIf stabalizeModeBool = True Then    '/////
+            whichAngleStabalizeRight()          '////
+            headerByte(10) = &H20               '///
+        End If                                  '//
+
+        headerByte(11) = &H0    'filling the bytes within the array because it is an left/right control
+        headerByte(14) = &H0    '///
+        headerByte(15) = &H80   '//
+
+        SerialPort1.Write(headerByte, 0, 18) 'serial writes the command to the camera
+    End Sub
+    '^^
+    'vv closes the program when the exit button on the form is pressed
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
         Me.Close()
     End Sub
-
+    '^^
+    'vv fills the array with the necessary command bytes to stop the zooming
+    'of the camera -- after being started
     Private Sub zoomStop(sender As Object, e As EventArgs) Handles ZoomInButton.MouseUp, ZoomOutButton.MouseUp
 
         headerByte(9) = &H5A
@@ -436,7 +487,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
-
+    '^^
+    'vv begins zooming in by filling the array with the necessary byte and then sending them
     Private Sub ZoomInButton_MouseDown(sender As Object, e As MouseEventArgs) Handles ZoomInButton.MouseDown
 
         headerByte(9) = &H5A
@@ -451,6 +503,8 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+    '^^
+    'vv begins zooming out by filling the array with the necessary byte and then sending them
     Private Sub ZoomOutButton_MouseDown(sender As Object, e As MouseEventArgs) Handles ZoomOutButton.MouseDown
         headerByte(9) = &H5A
         headerByte(10) = &HFF
@@ -464,47 +518,63 @@ Public Class IRForm
 
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
+    '^^
+    'vv enables the direction buttons to control the camera
     Private Sub directionalButtonsOn()
         upButton.Enabled = True
         downButton.Enabled = True
         leftButton.Enabled = True
         rightButton.Enabled = True
     End Sub
+    '^^
+    'vv disables the direction buttons to control the camera
     Private Sub directionalButtonsOff()
         upButton.Enabled = False
         downButton.Enabled = False
         leftButton.Enabled = False
         rightButton.Enabled = False
     End Sub
+    '^^
+    'vv alters the boolean variables to reflect which mode the camera is in and
+    'edits the array byte to be sent in a command to the camera 
     Private Sub offModeEnabled()
         offModeBool = True
         directModeBool = False
         stabalizeModeBool = False
         headerByte(10) = &H0
     End Sub
+    '^^ 
+    'vv alters the boolean variables to reflect which mode the camera is in
     Private Sub directModeEnabled()
         offModeBool = False
         directModeBool = True
         stabalizeModeBool = False
     End Sub
+    '^^
+    'vv alters the boolean variables to reflect which mode the camera is in 
     Private Sub stabalizeModeEnabled()
         offModeBool = False
         directModeBool = False
         stabalizeModeBool = True
     End Sub
+    '^^
 
-
+    'vv The code below was used to test when a key was pressed and the main goal was to be able
+    'to use the keyboard to control the camera movements. The issue was the form was not always in 
+    'focus so the key down event didn't always work which caused problems. To solve this one would
+    'have to find a way to have the form in focus all the time
     Private Sub IRForm_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         Me.Text = e.KeyCode.ToString
     End Sub
-
     Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
             MsgBox("enter key pressd ")
         End If
     End Sub
+    '^^
 
-
+    'vv altering the global variables for program communication for which angle the camera
+    'is moving at
     Private Sub pointTwoDegreeMode()
         pointTwoDegreeBool = True
         oneDegreeBool = False
@@ -513,7 +583,9 @@ Public Class IRForm
         twentyFiveDegreeBool = False
         fourtyFiveDegreeBool = False
     End Sub
-
+    '^^
+    'vv altering the global variables for program communication for which angle the camera
+    'is moving at
     Private Sub oneDegreeMode()
         pointTwoDegreeBool = False
         oneDegreeBool = True
@@ -522,7 +594,9 @@ Public Class IRForm
         twentyFiveDegreeBool = False
         fourtyFiveDegreeBool = False
     End Sub
-
+    '^^
+    'vv altering the global variables for program communication for which angle the camera
+    'is moving at
     Private Sub fiveDegreeMode()
         pointTwoDegreeBool = False
         oneDegreeBool = False
@@ -531,7 +605,9 @@ Public Class IRForm
         twentyFiveDegreeBool = False
         fourtyFiveDegreeBool = False
     End Sub
-
+    '^^
+    'vv altering the global variables for program communication for which angle the camera
+    'is moving at
     Private Sub fifteenDegreeMode()
         pointTwoDegreeBool = False
         oneDegreeBool = False
@@ -540,7 +616,9 @@ Public Class IRForm
         twentyFiveDegreeBool = False
         fourtyFiveDegreeBool = False
     End Sub
-
+    '^^
+    'vv altering the global variables for program communication for which angle the camera
+    'is moving at
     Private Sub twentyFiveDegreeMode()
         pointTwoDegreeBool = False
         oneDegreeBool = False
@@ -549,7 +627,9 @@ Public Class IRForm
         twentyFiveDegreeBool = True
         fourtyFiveDegreeBool = False
     End Sub
-
+    '^^
+    'vv altering the global variables for program communication for which angle the camera
+    'is moving at
     Private Sub fourtyFiveDegreeMode()
         pointTwoDegreeBool = False
         oneDegreeBool = False
@@ -558,6 +638,9 @@ Public Class IRForm
         twentyFiveDegreeBool = False
         fourtyFiveDegreeBool = True
     End Sub
+    '^^
+    'vv using if statements to check the global variables which degree mode was selected and
+    'then filling in the designated array bytes with the needed data
     Private Sub whichAngleDirectUp()
         If pointTwoDegreeBool = True Then
             headerByte(14) = &HDD
@@ -591,6 +674,9 @@ Public Class IRForm
             headerByte(17) = &HEA
         End If
     End Sub
+    '^^
+    'vv using if statements to check the global variables which degree mode was selected and
+    'then filling in the designated array bytes with the needed data
     Private Sub whichAngleDirectLeft()
         If pointTwoDegreeBool = True Then
             headerByte(12) = &HDD
@@ -624,6 +710,9 @@ Public Class IRForm
             headerByte(17) = &H57
         End If
     End Sub
+    '^^
+    'vv using if statements to check the global variables which degree mode was selected and
+    'then filling in the designated array bytes with the needed data
     Private Sub whichAngleDirectDown()
         If pointTwoDegreeBool = True Then
             headerByte(14) = &H23
@@ -648,8 +737,8 @@ Public Class IRForm
         ElseIf twentyFiveDegreeBool = True Then
             headerByte(14) = &HB
             headerByte(15) = &H91
-            headerByte(16) = &HA7
-            headerByte(17) = &HD5
+            headerByte(16) = &H57
+            headerByte(17) = &HD0
         ElseIf fourtyFiveDegreeBool = True Then
             headerByte(14) = &HAE
             headerByte(15) = &H9E
@@ -657,6 +746,9 @@ Public Class IRForm
             headerByte(17) = &HEB
         End If
     End Sub
+    '^^
+    'vv using if statements to check the global variables which degree mode was selected and
+    'then filling in the designated array bytes with the needed data
     Private Sub whichAngleDirectRight()
         If pointTwoDegreeBool = True Then
             headerByte(12) = &H23
@@ -681,8 +773,8 @@ Public Class IRForm
         ElseIf twentyFiveDegreeBool = True Then
             headerByte(12) = &HB
             headerByte(13) = &H91
-            headerByte(16) = &HBA
-            headerByte(17) = &H40
+            headerByte(16) = &H4A
+            headerByte(17) = &H45
         ElseIf fourtyFiveDegreeBool = True Then
             headerByte(12) = &HAE
             headerByte(13) = &H9E
@@ -690,6 +782,9 @@ Public Class IRForm
             headerByte(17) = &H57
         End If
     End Sub
+    '^^
+    'vv using if statements to check the global variables which degree mode was selected and
+    'then filling in the designated array bytes with the needed data
     Private Sub whichAngleStabalizeUp()
         If pointTwoDegreeBool = True Then
             headerByte(14) = &HDD
@@ -723,6 +818,9 @@ Public Class IRForm
             headerByte(17) = &HEF
         End If
     End Sub
+    '^^
+    'vv using if statements to check the global variables which degree mode was selected and
+    'then filling in the designated array bytes with the needed data
     Private Sub whichAngleStabalizeLeft()
         If pointTwoDegreeBool = True Then
             headerByte(12) = &HDD
@@ -756,6 +854,9 @@ Public Class IRForm
             headerByte(17) = &H52
         End If
     End Sub
+    '^^
+    'vv using if statements to check the global variables which degree mode was selected
+    'and then filling in the designated array bytes with the needed data
     Private Sub whichAngleStabalizeDown()
         If pointTwoDegreeBool = True Then
             headerByte(14) = &H23
@@ -789,6 +890,9 @@ Public Class IRForm
             headerByte(17) = &HEE
         End If
     End Sub
+    '^^
+    'vv using if statements to check the global variables which degree mode
+    'was selected and then filling in the designated array bytes with the needed data
     Private Sub whichAngleStabalizeRight()
         If pointTwoDegreeBool = True Then
             headerByte(12) = &H23
@@ -822,6 +926,6 @@ Public Class IRForm
             headerByte(17) = &H52
         End If
     End Sub
-
-
+    '^^
 End Class
+

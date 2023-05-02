@@ -18,9 +18,11 @@ Public Class IRForm
     Dim directModeBool, stabalizeModeBool, offModeBool, pointTwoDegreeBool, oneDegreeBool, fiveDegreeBool, fifteenDegreeBool, twentyFiveDegreeBool, fourtyFiveDegreeBool, upButtonBool, leftButtonBool, downButtonBool, rightButtonBool As Boolean
     Private Sub IRForm_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+
         'opens the named port at the designated bit rate, Size, And parity
         SerialPort1.PortName = "COM10" 'name serial port
         SerialPort1.BaudRate = 57600  'set baud rate 57.6k
+
         SerialPort1.DataBits = 8 'number of data bits is 8
         SerialPort1.StopBits = IO.Ports.StopBits.One 'one stop bit
         SerialPort1.Parity = IO.Ports.Parity.None 'no parity bits
@@ -442,6 +444,7 @@ Public Class IRForm
         SerialPort1.Write(headerByte, 0, 18)
     End Sub
     '^^
+
     'vv right button click does stuff to move the camera down
     Private Sub rightButton_Click(sender As Object, e As EventArgs) Handles rightButton.Click
         upButtonBool = False    'sets a variable as true and then disables the other variables to prevent any unwanted edits from other events
@@ -462,6 +465,25 @@ Public Class IRForm
         headerByte(11) = &H0    'filling the bytes within the array because it is an left/right control
         headerByte(14) = &H0    '///
         headerByte(15) = &H80   '//
+
+    Private Sub rightButton_Click(sender As Object, e As EventArgs) Handles rightButton.Click
+        upButtonBool = False
+        leftButtonBool = False
+        downButtonBool = False
+        rightButtonBool = True
+
+        headerByte(9) = &H47
+        If directModeBool = True Then
+            whichAngleDirectRight()
+            headerByte(10) = &H10
+        ElseIf stabalizeModeBool = True Then
+            whichAngleStabalizeRight()
+            headerByte(10) = &H20
+        End If
+        headerByte(11) = &H0
+        headerByte(14) = &H0
+        headerByte(15) = &H80
+
 
         SerialPort1.Write(headerByte, 0, 18) 'serial writes the command to the camera
     End Sub

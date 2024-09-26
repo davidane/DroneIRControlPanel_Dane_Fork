@@ -62,7 +62,7 @@ Partial Class IRForm
         '
         'GimbalButton1
         '
-        Me.GimbalButton1.Location = New System.Drawing.Point(404, 7)
+        Me.GimbalButton1.Location = New System.Drawing.Point(325, 7)
         Me.GimbalButton1.Name = "GimbalButton1"
         Me.GimbalButton1.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton1.TabIndex = 3
@@ -71,7 +71,7 @@ Partial Class IRForm
         '
         'GimbalButton2
         '
-        Me.GimbalButton2.Location = New System.Drawing.Point(405, 36)
+        Me.GimbalButton2.Location = New System.Drawing.Point(326, 36)
         Me.GimbalButton2.Name = "GimbalButton2"
         Me.GimbalButton2.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton2.TabIndex = 4
@@ -80,7 +80,7 @@ Partial Class IRForm
         '
         'GimbalButton3
         '
-        Me.GimbalButton3.Location = New System.Drawing.Point(405, 65)
+        Me.GimbalButton3.Location = New System.Drawing.Point(326, 65)
         Me.GimbalButton3.Name = "GimbalButton3"
         Me.GimbalButton3.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton3.TabIndex = 5
@@ -89,7 +89,7 @@ Partial Class IRForm
         '
         'GimbalButton4
         '
-        Me.GimbalButton4.Location = New System.Drawing.Point(405, 94)
+        Me.GimbalButton4.Location = New System.Drawing.Point(326, 94)
         Me.GimbalButton4.Name = "GimbalButton4"
         Me.GimbalButton4.Size = New System.Drawing.Size(75, 23)
         Me.GimbalButton4.TabIndex = 6
@@ -98,7 +98,7 @@ Partial Class IRForm
         '
         'HomeButton
         '
-        Me.HomeButton.Location = New System.Drawing.Point(404, 123)
+        Me.HomeButton.Location = New System.Drawing.Point(325, 123)
         Me.HomeButton.Name = "HomeButton"
         Me.HomeButton.Size = New System.Drawing.Size(75, 23)
         Me.HomeButton.TabIndex = 7
@@ -107,7 +107,7 @@ Partial Class IRForm
         '
         'VideoOnButton
         '
-        Me.VideoOnButton.Location = New System.Drawing.Point(486, 7)
+        Me.VideoOnButton.Location = New System.Drawing.Point(407, 7)
         Me.VideoOnButton.Name = "VideoOnButton"
         Me.VideoOnButton.Size = New System.Drawing.Size(75, 23)
         Me.VideoOnButton.TabIndex = 8
@@ -116,7 +116,7 @@ Partial Class IRForm
         '
         'VideoOffButton
         '
-        Me.VideoOffButton.Location = New System.Drawing.Point(486, 36)
+        Me.VideoOffButton.Location = New System.Drawing.Point(407, 36)
         Me.VideoOffButton.Name = "VideoOffButton"
         Me.VideoOffButton.Size = New System.Drawing.Size(75, 23)
         Me.VideoOffButton.TabIndex = 9
@@ -125,7 +125,7 @@ Partial Class IRForm
         '
         'FFCButton
         '
-        Me.FFCButton.Location = New System.Drawing.Point(486, 65)
+        Me.FFCButton.Location = New System.Drawing.Point(407, 65)
         Me.FFCButton.Name = "FFCButton"
         Me.FFCButton.Size = New System.Drawing.Size(75, 23)
         Me.FFCButton.TabIndex = 10
@@ -134,7 +134,7 @@ Partial Class IRForm
         '
         'ResetButton
         '
-        Me.ResetButton.Location = New System.Drawing.Point(486, 94)
+        Me.ResetButton.Location = New System.Drawing.Point(407, 94)
         Me.ResetButton.Name = "ResetButton"
         Me.ResetButton.Size = New System.Drawing.Size(75, 23)
         Me.ResetButton.TabIndex = 11
@@ -143,7 +143,7 @@ Partial Class IRForm
         '
         'upButton
         '
-        Me.upButton.Location = New System.Drawing.Point(154, 12)
+        Me.upButton.Location = New System.Drawing.Point(72, 8)
         Me.upButton.Name = "upButton"
         Me.upButton.Size = New System.Drawing.Size(75, 23)
         Me.upButton.TabIndex = 15
@@ -152,7 +152,7 @@ Partial Class IRForm
         '
         'leftButton
         '
-        Me.leftButton.Location = New System.Drawing.Point(93, 41)
+        Me.leftButton.Location = New System.Drawing.Point(11, 37)
         Me.leftButton.Name = "leftButton"
         Me.leftButton.Size = New System.Drawing.Size(75, 23)
         Me.leftButton.TabIndex = 16
@@ -161,7 +161,7 @@ Partial Class IRForm
         '
         'rightButton
         '
-        Me.rightButton.Location = New System.Drawing.Point(219, 41)
+        Me.rightButton.Location = New System.Drawing.Point(137, 37)
         Me.rightButton.Name = "rightButton"
         Me.rightButton.Size = New System.Drawing.Size(75, 23)
         Me.rightButton.TabIndex = 17
@@ -170,7 +170,7 @@ Partial Class IRForm
         '
         'downButton
         '
-        Me.downButton.Location = New System.Drawing.Point(154, 69)
+        Me.downButton.Location = New System.Drawing.Point(72, 65)
         Me.downButton.Name = "downButton"
         Me.downButton.Size = New System.Drawing.Size(75, 23)
         Me.downButton.TabIndex = 18
@@ -179,7 +179,7 @@ Partial Class IRForm
         '
         'ExitButton
         '
-        Me.ExitButton.Location = New System.Drawing.Point(485, 123)
+        Me.ExitButton.Location = New System.Drawing.Point(406, 123)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(75, 23)
         Me.ExitButton.TabIndex = 19
@@ -188,7 +188,7 @@ Partial Class IRForm
         '
         'ZoomInButton
         '
-        Me.ZoomInButton.Location = New System.Drawing.Point(12, 167)
+        Me.ZoomInButton.Location = New System.Drawing.Point(11, 176)
         Me.ZoomInButton.Name = "ZoomInButton"
         Me.ZoomInButton.Size = New System.Drawing.Size(75, 23)
         Me.ZoomInButton.TabIndex = 20
@@ -197,7 +197,7 @@ Partial Class IRForm
         '
         'ZoomOutButton
         '
-        Me.ZoomOutButton.Location = New System.Drawing.Point(12, 196)
+        Me.ZoomOutButton.Location = New System.Drawing.Point(11, 205)
         Me.ZoomOutButton.Name = "ZoomOutButton"
         Me.ZoomOutButton.Size = New System.Drawing.Size(75, 23)
         Me.ZoomOutButton.TabIndex = 23
@@ -207,7 +207,7 @@ Partial Class IRForm
         'pointTwoDegreeRadioButton
         '
         Me.pointTwoDegreeRadioButton.AutoSize = True
-        Me.pointTwoDegreeRadioButton.Location = New System.Drawing.Point(320, 11)
+        Me.pointTwoDegreeRadioButton.Location = New System.Drawing.Point(241, 11)
         Me.pointTwoDegreeRadioButton.Name = "pointTwoDegreeRadioButton"
         Me.pointTwoDegreeRadioButton.Size = New System.Drawing.Size(75, 17)
         Me.pointTwoDegreeRadioButton.TabIndex = 23
@@ -218,7 +218,7 @@ Partial Class IRForm
         'oneDegreeRadioButton
         '
         Me.oneDegreeRadioButton.AutoSize = True
-        Me.oneDegreeRadioButton.Location = New System.Drawing.Point(320, 34)
+        Me.oneDegreeRadioButton.Location = New System.Drawing.Point(241, 34)
         Me.oneDegreeRadioButton.Name = "oneDegreeRadioButton"
         Me.oneDegreeRadioButton.Size = New System.Drawing.Size(67, 17)
         Me.oneDegreeRadioButton.TabIndex = 24
@@ -229,7 +229,7 @@ Partial Class IRForm
         'fiveDegreesRadioButton
         '
         Me.fiveDegreesRadioButton.AutoSize = True
-        Me.fiveDegreesRadioButton.Location = New System.Drawing.Point(320, 57)
+        Me.fiveDegreesRadioButton.Location = New System.Drawing.Point(241, 57)
         Me.fiveDegreesRadioButton.Name = "fiveDegreesRadioButton"
         Me.fiveDegreesRadioButton.Size = New System.Drawing.Size(72, 17)
         Me.fiveDegreesRadioButton.TabIndex = 25
@@ -240,7 +240,7 @@ Partial Class IRForm
         'fifteenDegreesRadioButton
         '
         Me.fifteenDegreesRadioButton.AutoSize = True
-        Me.fifteenDegreesRadioButton.Location = New System.Drawing.Point(320, 80)
+        Me.fifteenDegreesRadioButton.Location = New System.Drawing.Point(241, 80)
         Me.fifteenDegreesRadioButton.Name = "fifteenDegreesRadioButton"
         Me.fifteenDegreesRadioButton.Size = New System.Drawing.Size(78, 17)
         Me.fifteenDegreesRadioButton.TabIndex = 26
@@ -251,7 +251,7 @@ Partial Class IRForm
         'twentyFiveDegreesRadioButton
         '
         Me.twentyFiveDegreesRadioButton.AutoSize = True
-        Me.twentyFiveDegreesRadioButton.Location = New System.Drawing.Point(320, 103)
+        Me.twentyFiveDegreesRadioButton.Location = New System.Drawing.Point(241, 103)
         Me.twentyFiveDegreesRadioButton.Name = "twentyFiveDegreesRadioButton"
         Me.twentyFiveDegreesRadioButton.Size = New System.Drawing.Size(78, 17)
         Me.twentyFiveDegreesRadioButton.TabIndex = 27
@@ -262,7 +262,7 @@ Partial Class IRForm
         'fourtyFiveDegreesRadioButton
         '
         Me.fourtyFiveDegreesRadioButton.AutoSize = True
-        Me.fourtyFiveDegreesRadioButton.Location = New System.Drawing.Point(320, 126)
+        Me.fourtyFiveDegreesRadioButton.Location = New System.Drawing.Point(241, 126)
         Me.fourtyFiveDegreesRadioButton.Name = "fourtyFiveDegreesRadioButton"
         Me.fourtyFiveDegreesRadioButton.Size = New System.Drawing.Size(78, 17)
         Me.fourtyFiveDegreesRadioButton.TabIndex = 28
@@ -310,7 +310,7 @@ Partial Class IRForm
         Me.modeSelectGroupBox.Controls.Add(Me.directModeRadioButton)
         Me.modeSelectGroupBox.Controls.Add(Me.stabilizeModeRadioButton)
         Me.modeSelectGroupBox.Controls.Add(Me.offModeRadioButton)
-        Me.modeSelectGroupBox.Location = New System.Drawing.Point(131, 327)
+        Me.modeSelectGroupBox.Location = New System.Drawing.Point(320, 167)
         Me.modeSelectGroupBox.Name = "modeSelectGroupBox"
         Me.modeSelectGroupBox.Size = New System.Drawing.Size(98, 101)
         Me.modeSelectGroupBox.TabIndex = 31
@@ -343,18 +343,18 @@ Partial Class IRForm
         '
         Me.CameraSelectGroupBox.Controls.Add(Me.IRCameraRadioButton)
         Me.CameraSelectGroupBox.Controls.Add(Me.SonyRadioButton)
-        Me.CameraSelectGroupBox.Location = New System.Drawing.Point(13, 327)
+        Me.CameraSelectGroupBox.Location = New System.Drawing.Point(193, 167)
         Me.CameraSelectGroupBox.Name = "CameraSelectGroupBox"
         Me.CameraSelectGroupBox.Size = New System.Drawing.Size(101, 84)
         Me.CameraSelectGroupBox.TabIndex = 34
         Me.CameraSelectGroupBox.TabStop = False
         Me.CameraSelectGroupBox.Text = "Camera Select"
         '
-
+        'IRForm
+        '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(831, 471)
-
+        Me.ClientSize = New System.Drawing.Size(488, 274)
         Me.Controls.Add(Me.CameraSelectGroupBox)
         Me.Controls.Add(Me.modeSelectGroupBox)
 
